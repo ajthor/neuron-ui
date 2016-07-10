@@ -1,7 +1,9 @@
 const electron = require('electron');
-// Module to control application life.
+const fs = require('fs');
+const path = require('path');
+
 const {app} = electron;
-// Module to create native browser window.
+
 const {BrowserWindow} = electron;
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -13,10 +15,7 @@ function createWindow() {
   win = new BrowserWindow({width: 800, height: 600});
 
   // and load the index.html of the app.
-  win.loadURL(`file://${__dirname}/index.html`);
-
-  // Open the DevTools.
-  win.webContents.openDevTools();
+  win.loadURL(`file://${path.join(path.dirname(__dirname), 'static')}/index.html`);
 
   // Emitted when the window is closed.
   win.on('closed', () => {

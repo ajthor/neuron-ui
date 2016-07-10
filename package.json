@@ -2,7 +2,7 @@
   "name": "ui",
   "version": "0.0.1",
   "description": "Desktop application for nn development.",
-  "main": "main.js",
+  "main": "./src/main.js",
   "scripts": {
     "start": "electron .",
     "test": "ava"
@@ -22,7 +22,7 @@
   },
   "ava": {
     "files": [
-      "test/**/*.js"
+      "./test/**/*.js"
     ]
   }
 }
