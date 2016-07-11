@@ -13,9 +13,12 @@
     "type": "git",
     "url": "https://github.com/ajthor/neuron-ui.git"
   },
+  "dependencies": {
+    "electron-prebuilt": "^1.2.6",
+    "zmq": "^2.15.3"
+  },
   "devDependencies": {
     "ava": "^0.15.2",
-    "electron-prebuilt": "^1.2.6",
     "gulp": "^3.9.1",
     "gulp-ava": "^0.12.1",
     "spectron": "^3.2.6"
