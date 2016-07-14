@@ -7,25 +7,36 @@
     "start": "electron .",
     "test": "gulp test"
   },
-  "author": "",
-  "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ajthor/neuron-ui.git"
+    "url": "git+https://github.com/ajthor/neuron-ui.git"
   },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ajthor/neuron-ui/issues"
+  },
+  "homepage": "https://github.com/ajthor/neuron-ui#readme",
   "dependencies": {
+    "angular": "^1.5.7",
     "electron-prebuilt": "^1.2.6",
-    "zmq": "^2.15.3"
+    "socket.io": "^1.4.8"
   },
   "devDependencies": {
     "ava": "^0.15.2",
     "gulp": "^3.9.1",
     "gulp-ava": "^0.12.1",
-    "spectron": "^3.2.6"
+    "gulp-xo": "^0.12.0",
+    "spectron": "^3.2.6",
+    "xo": "^0.16.0"
   },
   "ava": {
     "files": [
       "./test/**/*.js"
     ]
+  },
+  "xo": {
+    "esnext": true,
+    "space": 2
   }
 }
