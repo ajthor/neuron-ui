@@ -1,18 +1,16 @@
 'use strict';
+import path from 'path';
+
 import test from 'ava';
 import {Application} from 'spectron';
 
-import path from 'path';
-
 test.beforeEach(t => {
-
 	t.context.app = new Application({
     args: [`${path.dirname(__dirname)}`],
 		path: '../node_modules/.bin/electron'
 	});
 
 	return t.context.app.start();
-
 });
 
 test.afterEach(t => {

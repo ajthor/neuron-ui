@@ -1,16 +1,14 @@
 'use strict';
-const electron = require('electron');
-const fs = require('fs');
 const path = require('path');
 
+const electron = require('electron');
 const {app} = electron;
-
 const {BrowserWindow} = electron;
 
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({width: 1024, height: 768});
 
   mainWindow.loadURL(`file://${path.join(path.dirname(__dirname), 'static')}/index.html`);
 
