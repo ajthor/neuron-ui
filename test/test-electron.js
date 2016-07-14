@@ -25,3 +25,21 @@ test('window is visible', t => {
 			t.true(visible);
 		});
 });
+
+test('window title is \'Neuron\'', t => {
+  const app = t.context.app;
+
+  return app.client.getTitle().then(title => {
+			t.is(title, 'Neuron');
+		});
+});
+
+test('window size is 1024x768', t => {
+  const app = t.context.app;
+
+  return app.client.waitUntilWindowLoaded()
+    .browserWindow.getSize().then(size => {
+			t.is(size[0], 1024);
+      t.is(size[1], 768);
+		});
+});

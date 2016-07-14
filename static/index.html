@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
   <head>
     <meta charset="UTF-8">
     <title>Neuron</title>
     <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/socket.io-client/socket.io.js"></script>
+    <script src="../node_modules/angular-socket-io/socket.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/socket.js"></script>
+    <script src="scripts/services/socket.js"></script>
   </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+  <body ng-app="neuronApp">
 
     <div>
       <label>Name:</label>
@@ -17,5 +18,11 @@
       <hr>
       <h1>Hello {{yourName}}!</h1>
     </div>
+
+    <div ng-controller='SocketController'>
+      <input type='text' required ng-max='50' ng-model='message' focus>
+      <button ng-click="sendMessage(message)">Send</button>
+    </div>
+
   </body>
 </html>
