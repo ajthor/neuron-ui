@@ -3,26 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <title>Neuron</title>
-    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/react/dist/react.min.js"></script>
+    <script src="../node_modules/react-dom/dist/react-dom.min.js"></script>
     <script src="../node_modules/socket.io-client/socket.io.js"></script>
-    <script src="../node_modules/angular-socket-io/socket.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/socket.js"></script>
-    <script src="scripts/services/socket.js"></script>
   </head>
-  <body ng-app="neuronApp">
-
-    <div>
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
-      <hr>
-      <h1>Hello {{yourName}}!</h1>
-    </div>
-
-    <div ng-controller='SocketController'>
-      <input type='text' required ng-max='50' ng-model='message' focus>
-      <button ng-click="sendMessage(message)">Send</button>
-    </div>
-
+  <body>
+    <script src="scripts/build-status.js"></script>
+    <script src="scripts/file-tree.js"></script>
+    <script src="scripts/editor.js"></script>
+    <script src="scripts/status-bar.js"></script>
+    <script src="scripts/app.js"></script>
   </body>
 </html>

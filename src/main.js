@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
-
 const electron = require('electron');
+
 const {app, BrowserWindow} = electron;
 
 let mainWindow;
@@ -9,7 +9,7 @@ let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({width: 1024, height: 768});
 
-  mainWindow.loadURL(`file://${path.join(path.dirname(__dirname), 'static')}/index.html`);
+  mainWindow.loadURL(`file://${path.join(path.dirname(__dirname), 'build')}/index.html`);
 
   mainWindow.on('closed', () => {
     mainWindow = null;

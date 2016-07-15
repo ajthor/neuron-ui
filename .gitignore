@@ -29,3 +29,6 @@ node_modules
 
 # Vagrant box configuration files
 .vagrant
+
+# Build directories
+build
