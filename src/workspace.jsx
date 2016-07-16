@@ -27,7 +27,7 @@ let Workspace = React.createClass({
   render: function() {
     return (
       <div className="content">
-        <div className="main">
+        <div className="workspace">
           <Editor onSubmit={this.handleSubmit} />
         </div>
       </div>
