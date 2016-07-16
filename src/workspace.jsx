@@ -1,32 +1,28 @@
 'use strict';
 
-const io = require('socket.io');
-
 let Workspace = React.createClass({
-  getInitialState: () => {
-    return {socket: null};
+  getInitialState: function() {
+    return {};
   },
-  componentDidMount: () => {
-		this.socket = io('http://localhost:4195');
-    socket.on('connect', function () {
-      socket.send('message', 'hi');
 
+  componentDidMount: function() {
+		this.socket = io('http://localhost:4195');
+    this.socket.on('connect', () => {
+      this.socket.emit('message', 'CONNECTED. BEEP BOOP.');
     });
+
 	},
 
-  handleSubmit: (msg) => {
-    return this.socket.emit('message', msg);
+  handleSubmit: function(msg) {
+    this.socket.emit('message', msg.text);
   },
 
-  render: () => {
+  render: function() {
     return (
-      <div class="content">
-        <div class="main">
-          <FileTree />
+      <div className="content">
+        <div className="main">
           <Editor onSubmit={this.handleSubmit} />
-          <BuildStatus />
         </div>
-        <StatusBar />
       </div>
     );
   }

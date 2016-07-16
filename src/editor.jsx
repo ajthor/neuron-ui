@@ -1,24 +1,27 @@
 'use strict';
 
 let Editor = React.createClass({
-  getInitialState: () => {
-    return {text: ''};
+  getInitialState: function() {
+    return {
+      text: 'HELLO, ROBOTS'
+    };
   },
 
-  handleSubmit: e => {
-    e.preventDefault();
+  handleSubmit: function(e) {
+    let text = this.state.text;
+    this.props.onSubmit({text: text});
 
-    let text = this.refs.text.getDOMNode().value;
-    let script = {script: text}
-    this.props.onSubmit(script, () => {
-
-    });
+    this.setState({text: ''});
   },
 
-  render: () => {
+  handleTextChange: function(e) {
+    this.setState({text: e.target.value});
+  },
+
+  render: function() {
     return (
-      <form className="editor" onSubmit={this.handleSubmit}>
-        <textarea name="text" ref="text" required></textarea>
+      <form className="editor" onSubmit={ this.handleSubmit }>
+        <textarea type="text" value={ this.state.text } onChange={ this.handleTextChange } required></textarea>
         <input type="submit" value="Post" />
       </form>
     );
