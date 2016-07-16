@@ -9,9 +9,9 @@ let WorkspacePanel = React.createClass({
     }));
 
     return (
-      <div className="workspacePanel">
+      <workspace-panel class={`${this.props.classStyles}`}>
         { children }
-      </div>
+      </workspace-panel>
     );
   }
 });

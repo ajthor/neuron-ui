@@ -1,12 +1,11 @@
 'use strict';
 
 const React = require('react');
-const ReactDOM = require('react-dom');
 const io = require('socket.io-client');
 
 const WorkspacePanel = require('./workspace-panel.jsx');
-// const WorkspacePane = require('./workspace-pane.jsx');
-// const FileTree = require('./file-tree.jsx');
+const WorkspacePane = require('./workspace-pane.jsx');
+const FileTree = require('./file-tree.jsx');
 const Editor = require('./editor.jsx');
 // const StatusBar = require('./status-bar.jsx');
 
@@ -17,7 +16,7 @@ let Workspace = React.createClass({
     return {};
   },
 
-  componentDidMount: function() {
+  componentWillMount: function() {
 		this.socket = io('http://localhost:4195');
     this.socket.on('connect', () => {
       this.socket.emit('message', 'CONNECTED. BEEP BOOP.');
@@ -31,17 +30,35 @@ let Workspace = React.createClass({
   },
 
   render: function() {
+    //  Main panel.
+    //    Workspace panel.
+    //      Left panel.
+    //        Left pane.
+    //          FileTree
+    //      Middle panel.
+    //        Top pane.
+    //          Tabs
+    //        Middle pane.
+    //          GASplicer
+    //          Editor
+    //          BlockDiagram
+    //    Bottom panel.
+    //      StatusBar
     return (
-      <div className="workspace">
-        <WorkspacePanel>
-          <Editor handleSubmit={this.handleSubmit} />
+      <workspace className="workspace">
+        <WorkspacePanel classStyles="horizontal">
+          <WorkspacePanel classStyles="left">
+            <FileTree />
+          </WorkspacePanel>
+          <WorkspacePanel>
+            <WorkspacePane>
+              <Editor onSubmit={this.handleSubmit} />
+            </WorkspacePane>
+          </WorkspacePanel>
         </WorkspacePanel>
-      </div>
+      </workspace>
     );
   }
 });
 
-ReactDOM.render(
-  <Workspace />,
-  document.getElementById('content')
-);
+module.exports = Workspace;
