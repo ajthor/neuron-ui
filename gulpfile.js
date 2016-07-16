@@ -3,8 +3,15 @@ const path = require('path');
 const gulp = require('gulp');
 const ava = require('gulp-ava');
 const babel = require('gulp-babel');
-const sass = require('gulp-sass');
+const changed = require('gulp-changed');
+const less = require('gulp-less');
 const xo = require('gulp-xo');
+
+var paths = {
+  html: 'static/**/*.html',
+  scripts: ['static/**/*.js', 'static/**/*.jsx'],
+  styles: 'static/**/*.less'
+};
 
 gulp.task('test', () =>
 	gulp.src('test/test*.js')
@@ -13,34 +20,39 @@ gulp.task('test', () =>
 );
 
 gulp.task('lint', () =>
-  gulp.src(['src/**/*.js', 'lib/**/*.js'])
+  gulp.src(paths.scripts)
     .pipe(xo())
 );
 
-gulp.task('build-web', () =>
-  gulp.src(['static/**/*.html', 'static/**/*.js'])
+gulp.task('build-html', () =>
+  gulp.src(paths.html)
     .pipe(gulp.dest('build'))
 );
 
-gulp.task('build-react', () =>
-  gulp.src(['static/**/*.jsx'])
+gulp.task('build-scripts', () =>
+  gulp.src(paths.scripts)
+    .pipe(changed('build'))
     .pipe(babel({
       presets: ['react']
     }))
     .pipe(gulp.dest('build'))
 );
 
-gulp.task('build-stylesheets', () =>
-  gulp.src(['static/**/*.scss'])
-    .pipe(sass({
-      outputStyle: 'compressed'
-    }).on('error', sass.logError))
-    .pipe(gulp.dest('build/css'))
+gulp.task('build-styles', () =>
+  gulp.src(paths.styles)
+    .pipe(less())
+    .pipe(gulp.dest('build'))
 );
 
 gulp.task('default', ['lint', 'test']);
 gulp.task('build', [
-  'build-web',
-  'build-react',
-  'build-stylesheets'
+  'build-html',
+  'build-scripts',
+  'build-styles'
 ]);
+
+gulp.task('watch', () => {
+  gulp.watch(paths.html, ['build-html']);
+  gulp.watch(paths.scripts, ['build-scripts']);
+  gulp.watch(paths.styles, ['build-styles']);
+});
