@@ -2,6 +2,8 @@
 
 const React = require('react');
 
+const Input = require('./input.jsx');
+
 let Editor = React.createClass({
   getInitialState: function() {
     return {
@@ -9,24 +11,23 @@ let Editor = React.createClass({
     };
   },
 
-  handleSubmit: function(e) {
-    e.preventDefault();
-    let text = this.state.text;
-    this.props.onSubmit({text: text});
-
-    this.setState({text: ''});
-  },
-
-  handleTextChange: function(e) {
-    this.setState({text: e.target.value});
-  },
+  // handleKeyUp: function(e) {
+  //   e.preventDefault();
+  //   if (e.key == 'Enter') {
+  //     let text = this.state.text;
+  //     this.props.onSubmit({text: text});
+  //
+  //     this.setState({text: ''});
+  //   }
+  // },
+  //
+  // handleTextChange: function(e) {
+  //   this.setState({text: e.target.value});
+  // },
 
   render: function() {
     return (
-      <form className="editor" onSubmit={ this.handleSubmit }>
-        <textarea type="text" value={ this.state.text } onChange={ this.handleTextChange } required></textarea>
-        <input type="submit" value="Post" />
-      </form>
+      <Input onSubmit={ this.props.onSubmit }/>
     );
   }
 });
