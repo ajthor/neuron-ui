@@ -5,11 +5,12 @@ const React = require('react');
 let Editor = React.createClass({
   getInitialState: function() {
     return {
-      text: 'HELLO, ROBOTS'
+      text: ''
     };
   },
 
   handleSubmit: function(e) {
+    e.preventDefault();
     let text = this.state.text;
     this.props.onSubmit({text: text});
 
