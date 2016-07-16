@@ -1,5 +1,7 @@
 'use strict';
 
+const React = require('react');
+
 let Editor = React.createClass({
   getInitialState: function() {
     return {
@@ -27,3 +29,5 @@ let Editor = React.createClass({
     );
   }
 });
+
+module.exports = Editor;

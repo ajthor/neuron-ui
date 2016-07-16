@@ -1,5 +1,11 @@
 'use strict';
 
+const React = require('react');
+const ReactDOM = require('react-dom');
+const io = require('socket.io-client');
+
+const Editor = require('./editor.jsx');
+
 let Workspace = React.createClass({
   getInitialState: function() {
     return {};

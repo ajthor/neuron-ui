@@ -5,7 +5,11 @@ const ava = require('gulp-ava');
 const babel = require('gulp-babel');
 const changed = require('gulp-changed');
 const less = require('gulp-less');
+const util = require('gulp-util');
+const webpack = require('gulp-webpack');
 const xo = require('gulp-xo');
+
+const nodeExternals = require('webpack-node-externals');
 
 var paths = {
   static: 'static/**/*',
@@ -32,11 +36,28 @@ gulp.task('build-static', () =>
 
 gulp.task('build-scripts', () =>
   gulp.src(paths.scripts)
-    .pipe(changed('build'))
-    .pipe(babel({
-      presets: ['react']
+    .pipe(webpack({
+    	entry: './static/index.js',
+    	output: {
+    		path: path.join(__dirname, 'build'),
+    		filename: 'bundle.js'
+    	},
+      target: "electron",
+      externals: [nodeExternals()],
+      module: {
+        loaders: [
+          {
+            test: /\.jsx?/,
+            exclude: /node_modules/,
+            loader: 'babel-loader'
+          }
+        ]
+      }
     }))
-    .pipe(gulp.dest('build/src'))
+    // .pipe(babel({
+    //   presets: ['react']
+    // }))
+    .pipe(gulp.dest('build'))
 );
 
 gulp.task('build-styles', () =>
