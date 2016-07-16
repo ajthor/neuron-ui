@@ -10,7 +10,7 @@ let Editor = React.createClass({
 
     let text = this.refs.text.getDOMNode().value;
     let script = {script: text}
-    this.props.submitBuildScript(script, () => {
+    this.props.onSubmit(script, () => {
 
     });
   },
