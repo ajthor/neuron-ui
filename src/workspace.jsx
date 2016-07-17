@@ -7,7 +7,7 @@ const WorkspacePanel = require('./workspace-panel.jsx');
 const WorkspacePane = require('./workspace-pane.jsx');
 const FileTree = require('./file-tree.jsx');
 const Editor = require('./editor.jsx');
-// const StatusBar = require('./status-bar.jsx');
+const StatusBar = require('./status-bar.jsx');
 
 // Pane: Scrollable single component.
 // Panel: Container for panes. Used to group related content.
@@ -41,19 +41,28 @@ let Workspace = React.createClass({
     //          GASplicer
     //          Editor
     //          BlockDiagram
-    //    Bottom panel.
-    //      StatusBar
+    //      Bottom panel.
+    //        StatusBar
     return (
       <workspace className="workspace">
         <WorkspacePanel classStyles="horizontal">
           <WorkspacePanel classStyles="left">
             <FileTree />
           </WorkspacePanel>
-          <WorkspacePanel>
-            <WorkspacePane>
-              <Editor onSubmit={this.handleSubmit} />
-            </WorkspacePane>
+          <WorkspacePanel classStyles="vertical">
+            <WorkspacePanel classStyles="top">
+
+            </WorkspacePanel>
+            <WorkspacePanel classStyles="middle">
+              <WorkspacePane>
+                <Editor onSubmit={this.handleSubmit} />
+              </WorkspacePane>
+            </WorkspacePanel>
+
           </WorkspacePanel>
+        </WorkspacePanel>
+        <WorkspacePanel classStyles="bottom">
+          <StatusBar />
         </WorkspacePanel>
       </workspace>
     );
