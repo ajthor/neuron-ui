@@ -1,0 +1,48 @@
+// Imports
+// Highest precedence at the bottom.
+
+// Variable declarations.
+@text-color: #ffffff;
+@workspace-background: #21252b;
+
+// Styles
+workspace {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: @workspace-background;
+  color: @text-color;
+}
+
+workspace-panel {
+  display: flex;
+}
+
+.horizontal, .vertical {
+  position: relative;
+}
+
+workspace-panel.horizontal {
+  display: flex;
+  flex-basis: 0%;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+workspace-panel.vertical {
+  display: flex;
+  flex-basis: 0%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-direction: column;
+}
+
+workspace-panel.left {
+  display: flex;
+}
+
+workspace-pane {
+  display: flex;
+}
