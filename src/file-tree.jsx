@@ -14,91 +14,80 @@ let FileTree = React.createClass({
       I love trees. They are so cuddly.
       Why do we cut them down?
       Can't we all just get along?`,
-      directories: [
-        {
-          name: "./",
-          path: "./",
-          data: {
-            directories: [],
-            files: []
-          }
-        }
-      ]
+      directories: ["./"],
+      contents: {
+        dirs: [],
+        files: []
+      }
     };
   },
 
   //
   // Get directory tree.
   //
-  getDirectoryStructure: function(directory) {
-    // Read the contents of each directory.
-    // From Node's documentation.
-    // ┌─────────────────────┬────────────┐
-    // │          dir        │    base    │
-    // ├──────┬              ├──────┬─────┤
-    // │ root │              │ name │ ext │
-    // "  /    home/user/dir / file  .txt "
-    // └──────┴──────────────┴──────┴─────┘
-    fs.readdir(directory.path, (err, list) => {
-      // For each item, determine if the item is a directory. If it is, run
-      // this function recursively. If it isn't, add the file to the list of
-      // files in the data element.
+  getDirectoryContents: function(directory, cb) {
+    let result = {
+      dirs: [],
+      files: []
+    };
+
+    fs.readdir(directory, (err, list) => {
+      // Iterate over all directory contents to figure out if the contents are
+      // directories or files.
       list.forEach((file) => {
-        file = path.resolve(directory.path, file);
-        fs.stat(file, (err, res) => {
-          if (!res) return;
-          let item = {
-            name: path.parse(file).base,
-            path: file,
-            data: {
-              directories: [],
-              files: []
-            }
-          };
-          // Check the stats!
-          if (res.isDirectory()) {
-            this.getDirectoryStructure(item);
-            directory.data.directories.push(item);
-          }
-          else if (res.isFile()) {
-            directory.data.files.push(item);
-          }
+        file = path.resolve(directory, file);
+        fs.stat(file, (err, stats) => {
+          if (!stats) return cb(err, null);
+
+          if (stats.isDirectory()) result.dirs.push(file);
+          else result.files.push(file);
+
+          return cb(null, result);
+        });
+      });
+
+      // Done reading directory.
+      // return cb(err, result);
+    });
+  },
+
+  componentWillMount: function() {
+    // Get the directory structure.
+    this.state.directories.forEach((dir) => {
+      this.getDirectoryContents(dir, (err, res) => {
+        // Set the state of the tree.
+        this.setState({
+          contents: res
         });
       });
     });
   },
 
-  componentWillMount: function() {
-    let directories = this.state.directories;
-    // Get the directory structure.
-    directories.forEach((dir) => this.getDirectoryStructure(dir));
-    // Set the state of the tree.
-    this.setState({
-      directories: directories
-    });
+  handleOnClick: function() {
+    console.log('click');
   },
 
   render: function() {
 
-    let topDirectories = this.state.directories.map((topDirectory) => {
+    let directories = this.state.directories.map((directory) => {
 
-      let directories = topDirectory.data.directories.map((directory) => {
+      let subdirs = this.state.contents.dirs.map((subdir) => {
         return (
-          <FileTreeDirectory data={directory.data} />
+          <FileTreeDirectory directory={subdir} onClick={this.getDirectoryContents} />
         )
       });
 
-      let files = topDirectory.data.files.map((file) => {
+      let files = this.state.contents.files.map((file) => {
         return (
-          <FileTreeItem data={file} />
+          <FileTreeItem file={file} />
         )
       });
 
       return (
         <li className="tree-view-directory tree-list-item">
-          <span className="directory-name tree-list-header" data-path={topDirectory.path}>{ topDirectory.name }</span>
+          <span className="directory-name tree-list-header" data-path={directory} onClick={this.handleOnClick}>{ path.parse(directory).base }</span>
           <ol className="tree-view-directory tree-view">
-            { directories }
+            { subdirs }
             { files }
           </ol>
         </li>
@@ -109,7 +98,7 @@ let FileTree = React.createClass({
       <file-tree>
         <div className="scrollable">
           <ol className="tree-view tree-list">
-            { topDirectories }
+            { directories }
           </ol>
         </div>
       </file-tree>
