@@ -1,5 +1,7 @@
 'use strict';
 
+const React = require('react');
+
 let StatusBar = React.createClass({
   render: () => {
     return (
