@@ -11,3 +11,5 @@ let StatusBar = React.createClass({
     );
   }
 });
+
+module.exports = StatusBar;

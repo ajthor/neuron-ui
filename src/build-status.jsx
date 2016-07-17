@@ -9,3 +9,5 @@ let BuildStatus = React.createClass({
     );
   }
 });
+
+module.exports = BuildStatus;
