@@ -5,42 +5,27 @@ const React = require('react');
 const FileTreeItem = require('./file-tree-item.jsx');
 
 let FileTreeDirectory = React.createClass({
-  getInitialState: function() {
-    return {
-      dir: './',
-      files: [
-        {
-          type: 'file',
-          name: "someFile.js",
-          path: "./someFile.js"
-        },
-        {
-          type: 'file',
-          name: "someOtherFile.js",
-          path: "./someOtherFile.js"
-        }
-      ]
-    };
-  },
-
-  componentDidMount: function() {
-    // Get files in directory.
-  },
-
   render: function() {
-    let files = this.state.files.map((file) => {
+    let directories = this.props.data.directories.map((directory) => {
       return (
-        <FileTreeItem filePath={file.path} type={file.type} />
+        <FileTreeDirectory data={directory.data} />
+      )
+    });
+
+    let files = this.props.data.files.map((file) => {
+      return (
+        <FileTreeItem data={file} />
       );
     });
 
     return (
-      <div class="tree-view-directory">
-        <div class="tree-view-item">{this.state.dir}</div>
-        <ol class={`${this.props.type}`} data-directory={this.state.directory}>
+      <li className="directory tree-list-item">
+        <span data-path={this.props.path}>{this.props.name}</span>
+        <ol className="tree-view-directory tree-view">
+          { directories }
           { files }
         </ol>
-      </div>
+      </li>
     );
   }
 });

@@ -26,7 +26,6 @@ let Workspace = React.createClass({
 
   handleSubmit: function(msg) {
     this.socket.emit('message', msg.text);
-    this.setState({});
   },
 
   render: function() {
