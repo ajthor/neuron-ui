@@ -1,7 +1,7 @@
 'use strict';
 
 const React = require('react');
-const io = require('socket.io-client');
+const { connect } = require('react-redux');
 
 const WorkspacePanel = require('./workspace-panel.jsx');
 const WorkspacePane = require('./workspace-pane.jsx');
@@ -13,22 +13,6 @@ const StatusBar = require('./status-bar.jsx');
 // Pane: Scrollable single component.
 // Panel: Container for panes. Used to group related content.
 let Workspace = React.createClass({
-  getInitialState: function() {
-    return {};
-  },
-
-  componentWillMount: function() {
-		this.socket = io('http://localhost:4195');
-    this.socket.on('connect', () => {
-      this.socket.emit('message', 'CONNECTED. BEEP BOOP.');
-    });
-
-	},
-
-  handleSubmit: function(msg) {
-    this.socket.emit('message', msg.text);
-  },
-
   render: function() {
     //  Main panel.
     //    Workspace panel.
@@ -47,7 +31,7 @@ let Workspace = React.createClass({
     return (
       <workspace className="workspace">
         <WorkspacePanel classStyles="horizontal">
-          <WorkspacePanel classStyles="left">
+          <WorkspacePanel classStyles="left resizable">
             <WorkspacePane>
               <FileTree />
             </WorkspacePane>
@@ -71,4 +55,12 @@ let Workspace = React.createClass({
   }
 });
 
-module.exports = Workspace;
+const mapStateToProps = function(store) {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+
+});
+
+module.exports = connect(mapStateToProps)(Workspace);

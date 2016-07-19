@@ -28,8 +28,8 @@ let TabView = React.createClass({
     });
 
     return (
-      <tab-list className="tabView">
-        <ol>
+      <tab-list>
+        <ol className="tab-view">
           { tabs }
         </ol>
       </tab-list>

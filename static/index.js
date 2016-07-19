@@ -18,7 +18,7 @@ socket.on('connect', () => {
 //
 // Redux Reducers
 //
-const fileReducer = require('../src/file-reducer');
+const fileReducer = require('../src/reducers/file-reducer');
 //
 // Redux Store
 //

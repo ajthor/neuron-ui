@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const React = require('react');
+const { connect } = require('react-redux');
 
 const _ = require('lodash');
 const async = require('async');
@@ -126,4 +127,13 @@ let FileTree = React.createClass({
   }
 });
 
-module.exports = FileTree;
+
+const mapStateToProps = function(store) {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+
+});
+
+module.exports = connect(mapStateToProps)(FileTree);
