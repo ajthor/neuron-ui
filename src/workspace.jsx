@@ -6,6 +6,7 @@ const io = require('socket.io-client');
 const WorkspacePanel = require('./workspace-panel.jsx');
 const WorkspacePane = require('./workspace-pane.jsx');
 const FileTree = require('./file-tree.jsx');
+const TabView = require('./tab-view.jsx');
 const Editor = require('./editor.jsx');
 const StatusBar = require('./status-bar.jsx');
 
@@ -53,14 +54,13 @@ let Workspace = React.createClass({
           </WorkspacePanel>
           <WorkspacePanel classStyles="vertical">
             <WorkspacePanel classStyles="top">
-
+              <TabView />
             </WorkspacePanel>
             <WorkspacePanel classStyles="middle">
               <WorkspacePane>
                 <Editor onSubmit={this.handleSubmit} />
               </WorkspacePane>
             </WorkspacePanel>
-
           </WorkspacePanel>
         </WorkspacePanel>
         <WorkspacePanel classStyles="bottom">
