@@ -2,9 +2,10 @@
 
 const fs = require('fs');
 const path = require('path');
-const _ = require('lodash');
 
 const React = require('react');
+
+const _ = require('lodash');
 const async = require('async');
 const Promise = require('bluebird');
 
@@ -89,14 +90,16 @@ let FileTree = React.createClass({
     let directories = this.state.directories.map((directory) => {
 
       let subdirs = this.state.contents.dirs.map((subdir) => {
+        let key = _.uniqueId('file-tree-directory-');
         return (
-          <FileTreeDirectory directory={subdir} getDirectoryContents={this.getDirectoryContents} />
+          <FileTreeDirectory key={key} directory={subdir} getDirectoryContents={this.getDirectoryContents} />
         )
       });
 
       let files = this.state.contents.files.map((file) => {
+        let key = _.uniqueId('file-tree-file-');
         return (
-          <FileTreeItem file={file} />
+          <FileTreeItem key={key} file={file} />
         )
       });
 

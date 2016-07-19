@@ -22,25 +22,39 @@ let FileTreeDirectory = React.createClass({
   },
 
   handleOnClick: function() {
+    // If this is the first time the directory has been clicked on, load the
+    // contents of the directory and place them in memory. This avoids
+    // unnecessary compute time loading the tree when the tree is first loaded.
     if (!this.state.loaded) {
-      // Get the directory structure.
-      this.props.getDirectoryContents(this.props.directory, (res) => {
-        // Set the state of the tree.
-        this.setState({
-          contents: res
-        });
-      });
+      this.loadContents();
 
       this.setState({
         loaded: true,
-        expanded: !this.state.expanded
+        expanded: true
       });
+
     }
+    // If the contents of the directory are already loaded, however, just
+    // toggle the tree to display or hide.
     else {
-      this.setState({
-        expanded: !this.state.expanded
-      });
+      this.toggleExpanded();
     }
+  },
+
+  loadContents: function() {
+    // Get the directory structure.
+    this.props.getDirectoryContents(this.props.directory, (res) => {
+      // Set the state of the tree.
+      this.setState({
+        contents: res
+      });
+    });
+  },
+
+  toggleExpanded: function() {
+    this.setState({
+      expanded: !this.state.expanded
+    });
   },
 
   render: function() {

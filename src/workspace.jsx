@@ -47,7 +47,9 @@ let Workspace = React.createClass({
       <workspace className="workspace">
         <WorkspacePanel classStyles="horizontal">
           <WorkspacePanel classStyles="left">
-            <FileTree />
+            <WorkspacePane>
+              <FileTree />
+            </WorkspacePane>
           </WorkspacePanel>
           <WorkspacePanel classStyles="vertical">
             <WorkspacePanel classStyles="top">
