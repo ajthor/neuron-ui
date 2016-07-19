@@ -8,6 +8,8 @@ const FileTreeItem = require('./file-tree-item.jsx');
 let FileTreeDirectory = React.createClass({
   getInitialState: function() {
     return {
+      loaded: false,
+      expanded: false,
       contents: {
         dirs: [],
         files: []
@@ -15,19 +17,36 @@ let FileTreeDirectory = React.createClass({
     };
   },
 
+  componentWillMount: function() {
+
+  },
+
   handleOnClick: function() {
-    this.props.onClick(this.props.directory, (err, res) => {
-      // Set the state of the tree.
-      this.setState({
-        contents: res
+    if (!this.state.loaded) {
+      // Get the directory structure.
+      this.props.getDirectoryContents(this.props.directory, (res) => {
+        // Set the state of the tree.
+        this.setState({
+          contents: res
+        });
       });
-    });
+
+      this.setState({
+        loaded: true,
+        expanded: !this.state.expanded
+      });
+    }
+    else {
+      this.setState({
+        expanded: !this.state.expanded
+      });
+    }
   },
 
   render: function() {
     let directories = this.state.contents.dirs.map((directory) => {
       return (
-        <FileTreeDirectory directory={directory} onClick={this.props.onClick} />
+        <FileTreeDirectory directory={directory} getDirectoryContents={this.props.getDirectoryContents} />
       )
     });
 
@@ -39,8 +58,8 @@ let FileTreeDirectory = React.createClass({
 
     return (
       <li className="directory tree-list-item">
-        <span className="directory-name tree-list-header" data-path={this.props.directory} onClick={this.handleOnClick}>{ path.parse(this.props.directory).base }</span>
-        <ol className="tree-view-directory tree-view">
+        <span className={`directory-name tree-list-header`} data-path={this.props.directory} onClick={this.handleOnClick}>{ path.parse(this.props.directory).base }</span>
+        <ol className={`tree-view-directory tree-view ${this.state.expanded ? 'expanded' : 'collapsed'}`}>
           { directories }
           { files }
         </ol>

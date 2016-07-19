@@ -2,10 +2,16 @@
 
 const fs = require('fs');
 const path = require('path');
+const _ = require('lodash');
+
 const React = require('react');
+const async = require('async');
+const Promise = require('bluebird');
 
 const FileTreeDirectory = require('./file-tree-directory.jsx');
 const FileTreeItem = require('./file-tree-item.jsx');
+
+Promise.promisifyAll(fs);
 
 let FileTree = React.createClass({
   getInitialState: function() {
@@ -15,6 +21,7 @@ let FileTree = React.createClass({
       Why do we cut them down?
       Can't we all just get along?`,
       directories: ["./"],
+      expanded: true,
       contents: {
         dirs: [],
         files: []
@@ -26,36 +33,44 @@ let FileTree = React.createClass({
   // Get directory tree.
   //
   getDirectoryContents: function(directory, cb) {
-    let result = {
-      dirs: [],
-      files: []
-    };
 
-    fs.readdir(directory, (err, list) => {
-      // Iterate over all directory contents to figure out if the contents are
-      // directories or files.
-      list.forEach((file) => {
-        file = path.resolve(directory, file);
-        fs.stat(file, (err, stats) => {
-          if (!stats) return cb(err, null);
+    let list = fs.readdirAsync(directory).map((file) => {
+        return path.resolve(directory, file);
+      });
 
-          if (stats.isDirectory()) result.dirs.push(file);
-          else result.files.push(file);
-
-          return cb(null, result);
+    let files = list.filter((file) => {
+      return fs.statAsync(file)
+        .then((stat) => {
+          return stat.isFile();
         });
       });
 
-      // Done reading directory.
-      // return cb(err, result);
-    });
+    let dirs = list.filter((file) => {
+        return fs.statAsync(file)
+          .then((stat) => {
+            return stat.isDirectory();
+          });
+        });
+
+    return Promise.join(files, dirs, (files, dirs) => {
+        return { files: files, dirs: dirs };
+      })
+      .then(cb);
+
   },
 
   componentWillMount: function() {
     // Get the directory structure.
+    // Promise.each(this.state.directories, (dir) => {
+    //     return dir;
+    //   })
+    //   .then((dir) => {
+    //     return this.getDirectoryContents(dir, (res) => {
+    //       this.setState({contents: res});
+    //     });
+    //   });
     this.state.directories.forEach((dir) => {
-      this.getDirectoryContents(dir, (err, res) => {
-        // Set the state of the tree.
+      this.getDirectoryContents(dir, (res) => {
         this.setState({
           contents: res
         });
@@ -64,7 +79,9 @@ let FileTree = React.createClass({
   },
 
   handleOnClick: function() {
-    console.log('click');
+    this.setState({
+      expanded: !this.state.expanded
+    });
   },
 
   render: function() {
@@ -73,7 +90,7 @@ let FileTree = React.createClass({
 
       let subdirs = this.state.contents.dirs.map((subdir) => {
         return (
-          <FileTreeDirectory directory={subdir} onClick={this.getDirectoryContents} />
+          <FileTreeDirectory directory={subdir} getDirectoryContents={this.getDirectoryContents} />
         )
       });
 
@@ -85,8 +102,8 @@ let FileTree = React.createClass({
 
       return (
         <li className="tree-view-directory tree-list-item">
-          <span className="directory-name tree-list-header" data-path={directory} onClick={this.handleOnClick}>{ path.parse(directory).base }</span>
-          <ol className="tree-view-directory tree-view">
+          <span className={`directory-name tree-list-header`} data-path={directory} onClick={this.handleOnClick}>{ path.parse(directory).base }</span>
+          <ol className={`tree-view-directory tree-view ${this.state.expanded ? 'expanded' : 'collapsed'}`}>
             { subdirs }
             { files }
           </ol>
