@@ -1,7 +1,7 @@
 const Redux = require('redux');
 const Immutable = require('immutable');
 
-const actions = require('../actions/actionTypes');
+const actions = require('./actions/actionTypes');
 //
 // File state reducer.
 //

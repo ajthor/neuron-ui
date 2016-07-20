@@ -29,14 +29,14 @@ let FileTreeItem = React.createClass({
 
 const mapStateToProps = function(state, ownProps) {
   return {
-    ...ownProps
+
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => (
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    openFile:
+
   };
-);
+};
 
 module.exports = connect(mapStateToProps, mapDispatchToProps)(FileTreeItem);

@@ -18,11 +18,13 @@ socket.on('connect', () => {
 //
 // Redux Reducers
 //
-const fileReducer = require('../src/reducers/file-reducer');
+const fileReducer = require('../src/file-reducer');
 //
 // Redux Store
 //
-const store = Redux.createStore(Redux.combineReducers({fileReducer}));
+const store = Redux.createStore(Redux.combineReducers({
+  fileReducer
+}));
 
 ReactDOM.render(
   <Provider store={store}>
