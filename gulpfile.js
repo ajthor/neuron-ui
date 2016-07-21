@@ -12,9 +12,9 @@ const xo = require('gulp-xo');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const nodeExternals = require('webpack-node-externals');
 
-var paths = {
+const paths = {
   static: 'static/**/*.html',
-  scripts: 'src/**/index.jsx',
+  scripts: 'src/**/*.js',
   styles: 'static/**/main.less',
   tests: 'test/**/test*.js'
 };
@@ -38,12 +38,12 @@ gulp.task('build-static', () =>
 gulp.task('build-scripts', () =>
   gulp.src(paths.scripts)
     .pipe(webpack({
-    	entry: './static/index.js',
-    	output: {
-    		path: path.join(__dirname, 'build'),
-    		filename: 'bundle.js'
-    	},
-      target: "electron",
+      entry: './src/index.js',
+      output: {
+        path: path.join(__dirname, 'build'),
+        filename: 'bundle.js'
+      },
+      target: 'electron',
       externals: [nodeExternals()],
       module: {
         loaders: [
@@ -73,12 +73,12 @@ gulp.task('build-styles', () =>
         loaders: [
           {
             test: /\.less$/,
-            loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+            loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
           }
         ]
       },
       plugins: [
-        new ExtractTextPlugin("bundle.css")
+        new ExtractTextPlugin('bundle.css')
       ]
     }))
     .pipe(gulp.dest('build/css'))
