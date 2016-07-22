@@ -22,6 +22,11 @@ const actions = {
     payload: directory
   }),
 
+  toggleExpand: directory => ({
+    type: 'TOGGLE_EXPAND',
+    payload: directory
+  }),
+
   loadFile: file => ({
     type: 'LOAD_FILE',
     payload: file

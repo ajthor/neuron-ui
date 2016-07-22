@@ -90,12 +90,14 @@ class FileTree extends React.Component {
   }
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store, ownProps) => {
   return store.fileReducer.filetree;
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  toggleExpand: fileActions.toggleExpand(ownProps.base)
+  toggleExpand: () => {
+    dispatch(fileActions.toggleExpand(ownProps.path));
+  }
 });
 
 module.exports = connect(mapStateToProps, mapDispatchToProps)(FileTree);

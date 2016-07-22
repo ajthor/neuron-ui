@@ -1,4 +1,5 @@
-// const _ = require('lodash');
+const _ = require('lodash');
+const utils = require('./utils');
 const {fromJS} = require('immutable');
 
 //
@@ -16,7 +17,17 @@ const initialState = {
             {
               base: 'somedir',
               path: './somedir',
-              items: {},
+              items: {
+                files: [
+                  {
+                    base: 'somefile2.js',
+                    path: './somefile2.js',
+                    loaded: false,
+                    contents: '',
+                    open: false
+                  }
+                ]
+              },
               loaded: false,
               expanded: false
             }
@@ -43,11 +54,15 @@ const initialState = {
 //
 const fileActions = {
   LOAD_DIRECTORY: (state, payload) => {
-    // // Get filetree.
-    // let filetree = state.get('filetree');
-    // // Update filetree.
-    // let index = _.findKey(filetree, action.payload);
-    // return state.updateIn();
+    return utils.updateObject(state, payload, obj => {
+      obj.loaded = true;
+    });
+  },
+
+  TOGGLE_EXPAND: (state, payload) => {
+    return utils.updateObject(state, payload, obj => {
+      obj.expanded = !obj.expanded;
+    });
   }
 };
 

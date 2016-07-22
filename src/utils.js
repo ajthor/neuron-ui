@@ -35,6 +35,22 @@ const mapDeep = (obj, cb) => {
   });
 };
 
+const updateObject = (obj, search, cb) => {
+  let result = Object.assign({}, obj);
+  const srch = item => {
+    return item === search;
+  };
+  forEachDeep(result, value => {
+    if (_.find(value, srch)) {
+      cb(value);
+      return false;
+    }
+  });
+
+  return result;
+};
+
 exports.findDeep = findDeep;
 exports.forEachDeep = forEachDeep;
 exports.mapDeep = mapDeep;
+exports.updateObject = updateObject;

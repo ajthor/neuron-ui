@@ -5,6 +5,8 @@ const utils = require('./utils');
 const React = require('react');
 const {connect} = require('react-redux');
 
+const fileActions = require('./file-actions');
+
 const FileTreeItem = require('./file-tree-item.jsx');
 
 class FileTreeDirectory extends React.Component {
@@ -23,7 +25,7 @@ class FileTreeDirectory extends React.Component {
 
     return (
       <li className="directory tree-list-item">
-        <span className={`directory-name tree-list-header`} data-path={this.props.path}>{this.props.base}</span>
+        <span className={`directory-name tree-list-header`} data-path={this.props.path} onClick={this.props.toggleExpand}>{this.props.base}</span>
         <ol className={`tree-view-directory tree-view ${this.props.expanded ? 'expanded' : 'collapsed'}`}>
           { directories }
           { files }
@@ -34,15 +36,17 @@ class FileTreeDirectory extends React.Component {
 }
 
 const mapStateToProps = (store, ownProps) => {
-  // const newState = _.find(store.fileReducer.filetree, item => {
-  //   return item.path === ownProps.path;
-  // });
-  // return newState;
-  return {};
+  const newProps = utils.findDeep(store, obj => {
+    return obj === ownProps.path;
+  });
+  return newProps;
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-
+  toggleExpand: () => {
+    dispatch(fileActions.loadDirectory(ownProps.path));
+    dispatch(fileActions.toggleExpand(ownProps.path));
+  }
 });
 
 module.exports = connect(mapStateToProps, mapDispatchToProps)(FileTreeDirectory);
