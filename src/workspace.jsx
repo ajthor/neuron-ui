@@ -41,8 +41,8 @@ const StatusBar = require('./status-bar.jsx');
 //         - BlockDiagram
 //     - Bottom panel.
 //       - StatusBar
-let Workspace = React.createClass({
-  render: function() {
+class Workspace extends React.Component {
+  render() {
     return (
       <workspace class="workspace">
         <WorkspacePanel classStyles="horizontal">
@@ -57,7 +57,7 @@ let Workspace = React.createClass({
             </WorkspacePanel>
             <WorkspacePanel classStyles="middle">
               <WorkspacePane>
-                <Editor onSubmit={this.handleSubmit} />
+                <Editor />
               </WorkspacePane>
             </WorkspacePanel>
           </WorkspacePanel>
@@ -68,6 +68,6 @@ let Workspace = React.createClass({
       </workspace>
     );
   }
-});
+}
 
 module.exports = Workspace;

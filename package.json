@@ -2,7 +2,7 @@
   "name": "neuron-ui",
   "version": "0.0.1",
   "description": "Desktop application for nn development.",
-  "main": "./bin/neuron.js",
+  "main": "./bin/app.js",
   "scripts": {
     "build": "gulp build",
     "start": "gulp build && electron .",
