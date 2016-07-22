@@ -12,21 +12,6 @@ const actions = {
     payload: directory
   }),
 
-  loadDirectory: directory => ({
-    type: 'LOAD_DIRECTORY',
-    payload: directory
-  }),
-
-  openDirectory: directory => ({
-    type: 'OPEN_DIRECTORY',
-    payload: directory
-  }),
-
-  toggleExpand: directory => ({
-    type: 'TOGGLE_EXPAND',
-    payload: directory
-  }),
-
   loadFile: file => ({
     type: 'LOAD_FILE',
     payload: file

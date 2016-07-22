@@ -1,9 +1,12 @@
 'use strict';
+const path = require('path');
 const _ = require('lodash');
 const utils = require('./utils');
 
 const React = require('react');
 const {connect} = require('react-redux');
+
+const fileActions = require('./file-actions');
 
 class FileTreeItem extends React.Component {
   render() {
@@ -13,11 +16,7 @@ class FileTreeItem extends React.Component {
   }
 }
 
-const mapStateToProps = function (store, ownProps) {
-  // const newState = _.find(store.fileReducer.filetree, item => {
-  //   return item.path === ownProps.path;
-  // });
-  // return newState;
+const mapStateToProps = (store, ownProps) => {
   return {};
 };
 

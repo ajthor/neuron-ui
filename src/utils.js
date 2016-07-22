@@ -16,9 +16,21 @@ const forEachDeep = (obj, cb) => {
 
 const findDeep = (obj, cb) => {
   let result;
-  forEachDeep(obj, value => {
+  forEachDeep({obj}, value => {
     if (_.find(value, cb)) {
       result = value;
+      return false;
+    }
+  });
+
+  return result;
+};
+
+const getDeep = (obj, search) => {
+  let result;
+  forEachDeep({obj}, value => {
+    if (_.has(value, search)) {
+      result = value[search];
       return false;
     }
   });
@@ -36,13 +48,10 @@ const mapDeep = (obj, cb) => {
 };
 
 const updateObject = (obj, search, cb) => {
-  let result = Object.assign({}, obj);
-  const srch = item => {
-    return item === search;
-  };
-  forEachDeep(result, value => {
-    if (_.find(value, srch)) {
-      cb(value);
+  const result = Object.assign({}, obj);
+  forEachDeep({result}, value => {
+    if (_.has(value, search)) {
+      cb(result[search]);
       return false;
     }
   });
@@ -52,5 +61,6 @@ const updateObject = (obj, search, cb) => {
 
 exports.findDeep = findDeep;
 exports.forEachDeep = forEachDeep;
+exports.getDeep = getDeep;
 exports.mapDeep = mapDeep;
 exports.updateObject = updateObject;

@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const utils = require('./utils');
 const {fromJS} = require('immutable');
 
@@ -6,62 +5,22 @@ const {fromJS} = require('immutable');
 // Model of initial file state.
 //
 const initialState = {
-  openFiles: [],
-  filetree: {
-    projectDirectories: [
-      {
-        base: './',
-        path: './',
-        items: {
-          directories: [
-            {
-              base: 'somedir',
-              path: './somedir',
-              items: {
-                files: [
-                  {
-                    base: 'somefile2.js',
-                    path: './somefile2.js',
-                    loaded: false,
-                    contents: '',
-                    open: false
-                  }
-                ]
-              },
-              loaded: false,
-              expanded: false
-            }
-          ],
-          files: [
-            {
-              base: 'somefile.js',
-              path: './somefile.js',
-              loaded: false,
-              contents: '',
-              open: false
-            }
-          ]
-        },
-        loaded: false,
-        expanded: false
-      }
-    ]
-  }
+  openFiles: ['./Vagrantfile'],
+  projectDirectories: ['./']
 };
 
 //
 // File state reducer.
 //
 const fileActions = {
-  LOAD_DIRECTORY: (state, payload) => {
-    return utils.updateObject(state, payload, obj => {
-      obj.loaded = true;
+  LOAD_PROJECT_DIRECTORY: (state, payload) => {
+    return utils.updateObject(state, 'projectDirectories', obj => {
+      if (!obj.includes(payload)) {
+        obj.push(payload);
+      }
     });
   },
 
-  TOGGLE_EXPAND: (state, payload) => {
-    return utils.updateObject(state, payload, obj => {
-      obj.expanded = !obj.expanded;
     });
   }
 };

@@ -1,7 +1,7 @@
 'use strict';
 
 const React = require('react');
-const { connect } = require('react-redux');
+const {connect} = require('react-redux');
 
 // Import the React components we will use in our application. These components
 // represent the high-level components which we will display. Each one can be
