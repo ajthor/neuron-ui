@@ -11,7 +11,7 @@ const fileActions = require('./file-actions');
 class FileTreeItem extends React.Component {
   render() {
     return (
-      <li className={`tree-view-file ${this.props.open ? 'open' : ''}`} data-path={this.props.path}>{this.props.base}</li>
+      <li className={`tree-view-file tree-list-item`} data-path={this.props.path} onClick={this.props.openFile}>{path.parse(this.props.path).base}</li>
     );
   }
 }
@@ -20,10 +20,10 @@ const mapStateToProps = (store, ownProps) => {
   return {};
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-
-  };
-};
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  openFile: () => {
+    dispatch(fileActions.openFile(ownProps.path));
+  }
+});
 
 module.exports = connect(mapStateToProps, mapDispatchToProps)(FileTreeItem);

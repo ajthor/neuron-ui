@@ -21,6 +21,11 @@ const fileActions = {
     });
   },
 
+  OPEN_FILE: (state, payload) => {
+    return utils.updateObject(state, 'openFiles', obj => {
+      if (!obj.includes(payload)) {
+        obj.push(payload);
+      }
     });
   }
 };
