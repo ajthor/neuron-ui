@@ -10,18 +10,17 @@
 // As such, we are not going to connect the panels to Redux.
 const React = require('react');
 
-let WorkspacePanel = React.createClass({
-  render: function() {
-    let children = React.Children.map(this.props.children, (child) => React.cloneElement(child, {
-      text: 'text'
+class WorkspacePanel extends React.Component {
+  render() {
+    const children = React.Children.map(this.props.children, child => React.cloneElement(child, {
     }));
 
     return (
-      <workspace-panel class={`${this.props.classStyles}`}>
+      <workspace-panel class={`${this.props.classStyle}`}>
         { children }
       </workspace-panel>
     );
   }
-});
+}
 
 module.exports = WorkspacePanel;

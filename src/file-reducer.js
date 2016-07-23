@@ -27,8 +27,7 @@ const fileActions = {
       if (!_.find(obj, {path: payload})) {
         obj.push({
           path: payload,
-          active: false,
-          contents: ''
+          active: false
         });
       }
     });
@@ -38,13 +37,6 @@ const fileActions = {
     return utils.updateObject(state, 'openFiles', obj => {
       const index = _.findIndex(obj, {path: payload});
       obj.splice(index, 1);
-    });
-  },
-
-  LOAD_FILE_CONTENTS: (state, payload) => {
-    return utils.updateObject(state, 'openFiles', obj => {
-      const file = _.find(obj, {path: payload.path});
-      file.contents = payload.contents;
     });
   },
 

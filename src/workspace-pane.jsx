@@ -2,32 +2,45 @@
 //
 // Workspace Pane
 //
-// Similar to panels, panes have no state of their own. They are simply
-// containers for groups of related components in the application. In our case,
-// panes will hold the components and handle simple styles, such as making a
-// pane resizable, or collapsible, etc.
-// We won't be connecting panes to the state tree either.
+const _ = require('lodash');
 const React = require('react');
+const {connect} = require('react-redux');
+
+const utils = require('./utils');
+
+const TabView = require('./tab-view.jsx');
+const TextEditor = require('./text-editor.jsx');
 
 let WorkspacePane = React.createClass({
   render: function() {
-    let children = React.Children.map(this.props.children, (child) => React.cloneElement(child, {
-      text: 'text'
-    }));
+    const editors = _.map(this.props.openFiles, file => {
+      return (
+        <TextEditor {...file} />
+      );
+    });
 
-    let classStyle = () => {
-      if(!this.props.classStyles) {
-        return '';
-      }
-      return this.props.classStyles;
-    };
+    const activeFile = _.find(this.props.openFiles, {'active': true});
 
     return (
-      <workspace-pane class={`${this.classStyle}`}>
-        { children }
+      <workspace-pane class={`${this.props.classStyle || ''}`} active={activeFile ? activeFile.path : ''}>
+        <TabView />
+        <div className="editors">
+          {editors}
+        </div>
       </workspace-pane>
     );
   }
 });
 
-module.exports = WorkspacePane;
+const mapStateToProps = (store, ownProps) => {
+  const openFiles = utils.getDeep(store, 'openFiles');
+  return {
+    openFiles
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+
+});
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(WorkspacePane);

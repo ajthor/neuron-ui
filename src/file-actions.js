@@ -16,14 +16,6 @@ const actions = {
     payload: directory
   }),
 
-  loadFileContents: (path, contents) => ({
-    type: 'LOAD_FILE_CONTENTS',
-    payload: {
-      path,
-      contents
-    }
-  }),
-
   openFile: path => ({
     type: 'OPEN_FILE',
     payload: path

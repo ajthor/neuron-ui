@@ -9,8 +9,6 @@ const React = require('react');
 const WorkspacePanel = require('./workspace-panel.jsx');
 const WorkspacePane = require('./workspace-pane.jsx');
 const FileTree = require('./file-tree.jsx');
-const TabView = require('./tab-view.jsx');
-const Editor = require('./editor.jsx');
 const StatusBar = require('./status-bar.jsx');
 
 //
@@ -44,24 +42,23 @@ class Workspace extends React.Component {
   render() {
     return (
       <workspace className="workspace">
-        <WorkspacePanel classStyles="horizontal">
-          <WorkspacePanel classStyles="left resizable">
-            <WorkspacePane>
-              <FileTree />
-            </WorkspacePane>
+        <WorkspacePanel classStyle="horizontal">
+          <WorkspacePanel classStyle="left resizable">
+            <FileTree />
           </WorkspacePanel>
-          <WorkspacePanel classStyles="vertical">
-            <WorkspacePanel classStyles="top">
-              <TabView />
+          <WorkspacePanel classStyle="vertical">
+            <WorkspacePanel classStyle="top">
+
             </WorkspacePanel>
-            <WorkspacePanel classStyles="middle">
-              <WorkspacePane>
-                <Editor />
-              </WorkspacePane>
+            <WorkspacePanel classStyle="middle">
+              <WorkspacePane />
+            </WorkspacePanel>
+            <WorkspacePanel classStyle="bottom">
+
             </WorkspacePanel>
           </WorkspacePanel>
         </WorkspacePanel>
-        <WorkspacePanel classStyles="bottom">
+        <WorkspacePanel classStyle="bottom">
           <StatusBar />
         </WorkspacePanel>
       </workspace>

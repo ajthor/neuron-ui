@@ -9,7 +9,7 @@ class StatusBar extends React.Component {
   render() {
     return (
       <status-bar class="status-bar">
-        <div className="status-bar-left">{this.props.path}</div>
+        <div className="status-bar-left">{this.props.activeFile ? this.props.activeFile.path : ''}</div>
         <div className="status-bar-right"></div>
       </status-bar>
     );
@@ -20,7 +20,7 @@ const mapStateToProps = (store, ownProps) => {
   const openFiles = utils.getDeep(store, 'openFiles');
   const activeFile = _.find(openFiles, {'active': true});
   return {
-    path: activeFile ? activeFile.path : ''
+    activeFile
   };
 };
 

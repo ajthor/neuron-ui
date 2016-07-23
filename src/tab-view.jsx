@@ -10,7 +10,7 @@ const TabViewItem = require('./tab-view-item.jsx');
 
 class TabView extends React.Component {
   render() {
-    const tabs = this.props.openFiles.map(file => {
+    const tabs = _.map(this.props.openFiles, file => {
       return (
         <TabViewItem {...file} />
       );

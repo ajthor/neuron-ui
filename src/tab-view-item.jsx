@@ -19,7 +19,7 @@ class TabViewItem extends React.Component {
 const mapStateToProps = (store, ownProps) => {
   const openFiles = utils.getDeep(store, 'openFiles');
   const newProps = _.find(openFiles, {path: ownProps.path});
-  return {path: newProps.path, active: newProps.active};
+  return newProps;
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
