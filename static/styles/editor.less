@@ -4,6 +4,22 @@
 // Variable declarations.
 
 // Styles
-editor {
+workspace-pane {
+  display: flex;
+}
+
+text-editor {
+  display: none;
   font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  font-size: 9pt;
+}
+
+text-editor.active {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  width: 100%;
+  overflow: auto;
 }
