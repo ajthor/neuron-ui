@@ -3,13 +3,13 @@
 const React = require('react');
 
 let Input = React.createClass({
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       text: ''
     };
   },
 
-  handleKeyUp: function(e) {
+  handleKeyUp: function (e) {
     e.preventDefault();
     if (e.key == 'Enter') {
       let text = this.state.text;
@@ -19,11 +19,11 @@ let Input = React.createClass({
     }
   },
 
-  handleTextChange: function(e) {
+  handleTextChange: function (e) {
     this.setState({text: e.target.value});
   },
 
-  render: function() {
+  render: function () {
     return (
       <input className="input" type="text"
         value={ this.state.text }
