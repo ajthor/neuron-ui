@@ -20,6 +20,11 @@ const actions = {
   openFile: file => ({
     type: 'OPEN_FILE',
     payload: file
+  }),
+
+  setActive: file => ({
+    type: 'SET_ACTIVE',
+    payload: file
   })
 
 };

@@ -1,7 +1,6 @@
 'use strict';
 
 const React = require('react');
-const {connect} = require('react-redux');
 
 // Import the React components we will use in our application. These components
 // represent the high-level components which we will display. Each one can be
@@ -44,7 +43,7 @@ const StatusBar = require('./status-bar.jsx');
 class Workspace extends React.Component {
   render() {
     return (
-      <workspace class="workspace">
+      <workspace className="workspace">
         <WorkspacePanel classStyles="horizontal">
           <WorkspacePanel classStyles="left resizable">
             <WorkspacePane>

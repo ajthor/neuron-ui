@@ -2,39 +2,39 @@
 
 const _ = require('lodash');
 const React = require('react');
+const {connect} = require('react-redux');
 
-const TabItem = require('./tab-item.jsx');
+const utils = require('./utils');
 
-let TabView = React.createClass({
-  getInitialState: function() {
-    return {
-      files: [],
-      activeFile: ''
-    };
-  },
+const TabViewItem = require('./tab-view-item.jsx');
 
-  handleOnClick: function() {
-    React.Children.forEach((tabItem) => {
-      tabItem.setState({active: false});
-    });
-  },
-
-  render: function() {
-    let tabs = this.state.files.map((file) => {
-      let key = _.uniqueId('tab-item-');
+class TabView extends React.Component {
+  render() {
+    const tabs = this.props.openFiles.map(file => {
       return (
-        <TabItem key={key} file={file} onClick={this.handleOnClick} />
-      )
+        <TabViewItem {...file} />
+      );
     });
 
     return (
       <tab-list>
         <ol className="tab-view">
-          { tabs }
+          {tabs}
         </ol>
       </tab-list>
     );
   }
+}
+
+const mapStateToProps = (store, ownProps) => {
+  const openFiles = utils.getDeep(store, 'openFiles');
+  return {
+    openFiles
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+
 });
 
-module.exports = TabView;
+module.exports = connect(mapStateToProps)(TabView);

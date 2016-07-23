@@ -1,10 +1,11 @@
 'use strict';
 const path = require('path');
 const _ = require('lodash');
-const utils = require('./utils');
 
 const React = require('react');
 const {connect} = require('react-redux');
+
+const utils = require('./utils');
 
 const fileActions = require('./file-actions');
 
@@ -23,6 +24,7 @@ const mapStateToProps = (store, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openFile: () => {
     dispatch(fileActions.openFile(ownProps.path));
+    dispatch(fileActions.setActive(ownProps.path));
   }
 });
 

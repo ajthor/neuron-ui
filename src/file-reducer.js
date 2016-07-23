@@ -1,11 +1,12 @@
+const _ = require('lodash');
 const utils = require('./utils');
-const {fromJS} = require('immutable');
+// const {List} = require('immutable');
 
 //
 // Model of initial file state.
 //
 const initialState = {
-  openFiles: ['./Vagrantfile'],
+  openFiles: [],
   projectDirectories: ['./']
 };
 
@@ -23,9 +24,24 @@ const fileActions = {
 
   OPEN_FILE: (state, payload) => {
     return utils.updateObject(state, 'openFiles', obj => {
-      if (!obj.includes(payload)) {
-        obj.push(payload);
+      if (!_.find(obj, ['path', payload])) {
+        obj.push({
+          path: payload,
+          active: false
+        });
       }
+    });
+  },
+
+  SET_ACTIVE: (state, payload) => {
+    return utils.updateObject(state, 'openFiles', obj => {
+      obj.forEach(file => {
+        if (file.path === payload) {
+          file.active = true;
+          return false;
+        }
+        file.active = false;
+      });
     });
   }
 };

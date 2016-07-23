@@ -48,7 +48,7 @@ const mapDeep = (obj, cb) => {
 };
 
 const updateObject = (obj, search, cb) => {
-  const result = Object.assign({}, obj);
+  const result = _.merge({}, obj);
   forEachDeep({result}, value => {
     if (_.has(value, search)) {
       cb(result[search]);
