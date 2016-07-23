@@ -14,6 +14,10 @@ file-tree {
   width: 200px;
   display: flex;
   flex-direction: column;
+
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: @panel-border-color
 }
 
 .tree-view {
@@ -30,15 +34,17 @@ file-tree {
 }
 
 .tree-view-directory {
-
+  position: relative;
 }
 
 .list-item {
   white-space: nowrap;
+  display: list-item;
 }
 
 .directory {
   position: relative;
+  padding-left: 15px;
 }
 
 .directory-list {

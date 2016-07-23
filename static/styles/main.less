@@ -2,10 +2,13 @@
 // Highest precedence at the bottom.
 @import "workspace.less";
 @import "file-tree.less";
+@import "status-bar.less";
+@import "tab-view.less";
 @import "editor.less";
 
 // Variable declarations.
 @window-background-color: #1B1D23;
+@panel-border-color: #181a1f;
 
 // Styles
 * {
@@ -33,6 +36,10 @@ ol {
   padding-left: 0px;
 }
 
+ul {
+  padding-left: 0px;
+}
+
 li {
   display: list-item;
 }
@@ -48,9 +55,13 @@ li {
 }
 
 .resizable {
-
+  position: relative;
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  cursor: default;
 }
 
 .collapsed {
   display: none;
-} 
+}

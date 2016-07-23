@@ -18,7 +18,7 @@ class TextEditor extends React.Component {
     super(props);
     this.state = {
       loaded: false,
-      raw: ''
+      contents: ['']
     };
   }
 
@@ -32,13 +32,18 @@ class TextEditor extends React.Component {
   //   }
   // },
 
+  splitFileContents(contents) {
+    return contents.split(/\r?\n/);
+  }
+
   loadFileContents() {
     const contents = fs.readFileAsync(this.props.path, 'utf8');
     return Promise.resolve(contents)
+      .then(contents => this.splitFileContents(contents))
       .then(contents => {
         this.setState({
           loaded: true,
-          raw: contents
+          contents
         });
       });
   }
@@ -47,18 +52,28 @@ class TextEditor extends React.Component {
     this.loadFileContents();
   }
 
-  componentWillReceiveProps() {
-
+  componentDidUpdate(oldProps, oldState) {
+    if (oldProps.path !== this.props.path) {
+      this.loadFileContents();
+    }
   }
 
   formatContents() {
-    this.contents = this.props.contents;
+    // this.contents = this.props.contents;
   }
 
   render() {
+    const lines = _.map(this.state.contents, (line, index) => {
+      return (
+        <div className="line" key={index}>{line}</div>
+      );
+    });
+
     return (
-      <text-editor class={`text-editor${this.props.active ? ' active' : ''}`}>
-        <div>{this.state.raw}</div>
+      <text-editor class={`text-editor${this.props.active ? ' active' : ' hidden'}`} data-path={this.props.path}>
+        <div className="editor-contents scrollable">
+          {lines}
+        </div>
       </text-editor>
     );
   }
@@ -74,4 +89,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
 });
 
+// module.exports = connect(mapStateToProps, mapDispatchToProps)(TextEditor);
 module.exports = TextEditor;
