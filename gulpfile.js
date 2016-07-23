@@ -14,7 +14,7 @@ const nodeExternals = require('webpack-node-externals');
 
 const paths = {
   static: 'static/**/*.html',
-  scripts: 'src/**/*.js',
+  scripts: ['src/**/*.js', 'src/**/*.jsx'],
   styles: 'static/**/main.less',
   tests: 'test/**/test*.js'
 };

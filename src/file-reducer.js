@@ -24,12 +24,27 @@ const fileActions = {
 
   OPEN_FILE: (state, payload) => {
     return utils.updateObject(state, 'openFiles', obj => {
-      if (!_.find(obj, ['path', payload])) {
+      if (!_.find(obj, {path: payload})) {
         obj.push({
           path: payload,
-          active: false
+          active: false,
+          contents: ''
         });
       }
+    });
+  },
+
+  CLOSE_FILE: (state, payload) => {
+    return utils.updateObject(state, 'openFiles', obj => {
+      const index = _.findIndex(obj, {path: payload});
+      obj.splice(index, 1);
+    });
+  },
+
+  LOAD_FILE_CONTENTS: (state, payload) => {
+    return utils.updateObject(state, 'openFiles', obj => {
+      const file = _.find(obj, {path: payload.path});
+      file.contents = payload.contents;
     });
   },
 
@@ -41,6 +56,27 @@ const fileActions = {
           return false;
         }
         file.active = false;
+      });
+    });
+  },
+
+  SET_NEXT_ACTIVE: (state, payload) => {
+    return utils.updateObject(state, 'openFiles', obj => {
+      const length = obj.length - 1;
+      obj.forEach((file, index) => {
+        if (file.path === payload) {
+          file.active = false;
+
+          if (length !== 0) {
+            if (index === length) {
+              obj[index - 1].active = true;
+            } else {
+              obj[index + 1].active = true;
+            }
+          }
+
+          return false;
+        }
       });
     });
   }

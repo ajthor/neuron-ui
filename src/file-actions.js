@@ -1,3 +1,7 @@
+const fs = require('fs');
+const Promise = require('bluebird');
+
+Promise.promisifyAll(fs);
 //
 // File action creators.
 //
@@ -12,19 +16,32 @@ const actions = {
     payload: directory
   }),
 
-  loadFile: file => ({
-    type: 'LOAD_FILE',
-    payload: file
+  loadFileContents: (path, contents) => ({
+    type: 'LOAD_FILE_CONTENTS',
+    payload: {
+      path,
+      contents
+    }
   }),
 
-  openFile: file => ({
+  openFile: path => ({
     type: 'OPEN_FILE',
-    payload: file
+    payload: path
   }),
 
-  setActive: file => ({
+  closeFile: path => ({
+    type: 'CLOSE_FILE',
+    payload: path
+  }),
+
+  setActive: path => ({
     type: 'SET_ACTIVE',
-    payload: file
+    payload: path
+  }),
+
+  setNextActive: path => ({
+    type: 'SET_NEXT_ACTIVE',
+    payload: path
   })
 
 };

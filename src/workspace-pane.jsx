@@ -6,7 +6,7 @@
 // containers for groups of related components in the application. In our case,
 // panes will hold the components and handle simple styles, such as making a
 // pane resizable, or collapsible, etc.
-// We won't be connecting panes to the state tree either. 
+// We won't be connecting panes to the state tree either.
 const React = require('react');
 
 let WorkspacePane = React.createClass({
