@@ -8,7 +8,7 @@ const {connect} = require('react-redux');
 
 const utils = require('./utils');
 
-// const FileTreeItem = require('./file-tree-item.jsx');
+const FileTreeItem = require('./file-tree-item.jsx');
 
 const fileActions = require('./file-actions');
 
@@ -75,24 +75,22 @@ class FileTreeDirectory extends React.Component {
   }
 
   render() {
-    const directories = _.map(this.state.items.directories, directory => {
+    const directories = _.map(this.state.items.directories, dir => {
       return (
-        <FileTreeDirectory path={directory} />
+        <FileTreeDirectory path={dir} />
       );
     });
 
     const files = _.map(this.state.items.files, file => {
       return (
-        <li className={`tree-view-file tree-list-item`} onClick={() => this.props.openFile(file)}>
-          <span className="name" data-path={file}>{path.parse(file).base}</span>
-        </li>
+        <FileTreeItem path={file} />
       );
     });
 
     return (
       <li className="tree-view-directory list-item">
-        <div className='list-header' onClick={this.toggleExpand}>
-          <span className='name' data-path={this.props.path}>{path.parse(this.props.path).base}</span>
+        <div className="list-header" onClick={this.toggleExpand}>
+          <span className="name" data-path={this.props.path}>{path.parse(this.props.path).base}</span>
         </div>
         <ol className={`directory ${this.state.expanded ? 'expanded' : 'collapsed'}`}>
           {directories}
@@ -103,15 +101,16 @@ class FileTreeDirectory extends React.Component {
   }
 }
 
-const mapStateToProps = (store, ownProps) => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  openFile: (path) => {
-    dispatch(fileActions.openFile(path));
-    dispatch(fileActions.setActive(path));
-  }
-});
-
-module.exports = connect(mapStateToProps, mapDispatchToProps)(FileTreeDirectory);
+// const mapStateToProps = (store, ownProps) => {
+//   return {};
+// };
+//
+// const mapDispatchToProps = (dispatch, ownProps) => ({
+//   openFile: (path) => {
+//     dispatch(fileActions.openFile(path));
+//     dispatch(fileActions.setActive(path));
+//   }
+// });
+//
+// module.exports = connect(mapStateToProps, mapDispatchToProps)(FileTreeDirectory);
+module.exports = FileTreeDirectory;
