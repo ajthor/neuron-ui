@@ -4,10 +4,13 @@ const path = require('path');
 const _ = require('lodash');
 const Promise = require('bluebird');
 const React = require('react');
+const {connect} = require('react-redux');
 
 const utils = require('./utils');
 
-const FileTreeItem = require('./file-tree-item.jsx');
+// const FileTreeItem = require('./file-tree-item.jsx');
+
+const fileActions = require('./file-actions');
 
 Promise.promisifyAll(fs);
 
@@ -80,14 +83,18 @@ class FileTreeDirectory extends React.Component {
 
     const files = _.map(this.state.items.files, file => {
       return (
-        <FileTreeItem path={file} />
+        <li className={`tree-view-file tree-list-item`} onClick={() => this.props.openFile(file)}>
+          <span className="name" data-path={file}>{path.parse(file).base}</span>
+        </li>
       );
     });
 
     return (
-      <li className="directory tree-list-item">
-        <span className={`directory-name tree-list-header`} data-path={this.props.path} onClick={this.toggleExpand}>{path.parse(this.props.path).base}</span>
-        <ol className={`tree-view-directory tree-view ${this.state.expanded ? 'expanded' : 'collapsed'}`}>
+      <li className="tree-view-directory list-item">
+        <div className='list-header' onClick={this.toggleExpand}>
+          <span className='name' data-path={this.props.path}>{path.parse(this.props.path).base}</span>
+        </div>
+        <ol className={`directory ${this.state.expanded ? 'expanded' : 'collapsed'}`}>
           {directories}
           {files}
         </ol>
@@ -96,4 +103,15 @@ class FileTreeDirectory extends React.Component {
   }
 }
 
-module.exports = FileTreeDirectory;
+const mapStateToProps = (store, ownProps) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  openFile: (path) => {
+    dispatch(fileActions.openFile(path));
+    dispatch(fileActions.setActive(path));
+  }
+});
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(FileTreeDirectory);

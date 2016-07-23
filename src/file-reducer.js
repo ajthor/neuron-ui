@@ -27,7 +27,8 @@ const fileActions = {
       if (!_.find(obj, {path: payload})) {
         obj.push({
           path: payload,
-          active: false
+          active: false,
+          key: _.uniqueId()
         });
       }
     });
