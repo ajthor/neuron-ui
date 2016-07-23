@@ -1,0 +1,56 @@
+// Imports
+// Highest precedence at the bottom.
+@import "workspace.less";
+@import "file-tree.less";
+@import "editor.less";
+
+// Variable declarations.
+@window-background-color: #1B1D23;
+
+// Styles
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+body {
+  display: block;
+  background-color: @window-background-color;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+ol {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+li {
+  display: list-item;
+}
+
+.scrollable {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  width: 100%;
+  overflow: auto;
+}
+
+.resizable {
+
+}
+
+.collapsed {
+  display: none;
+} 

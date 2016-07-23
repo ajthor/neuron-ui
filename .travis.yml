@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - '6'
+  - '5'
+  - '4'
+  - 'node'
+
+addons:
+  apt:
+    packages:
+      - git
+      - xvfb
+
+before_install:
+  - 'npm install -g npm@latest'
+
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - 'npm install'
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
