@@ -1,23 +1,28 @@
-// Imports
-// Highest precedence at the bottom.
-
-// Variable declarations.
-
-// Styles
+//
+// File Tree styles.
+//
+.file-tree-container {
+  .scrollable;
+  // display: flex;
+  // flex-direction: column;
+  // flex: 1 1 0%;
+  // width: 100%;
+  // overflow: auto;
+}
 
 file-tree {
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
   cursor: default;
-  min-width: 100px;
+  min-width: 200px;
   width: 200px;
   display: flex;
   flex-direction: column;
 
   border-right-width: 1px;
   border-right-style: solid;
-  border-right-color: @panel-border-color
+  border-right-color: @panel-border-color;
 }
 
 .tree-view {
@@ -33,24 +38,26 @@ file-tree {
   cursor: default;
 }
 
+.tree-view-directory, .tree-view-file {
+  line-height: @workspace-line-height;
+}
+
 .tree-view-directory {
   position: relative;
 }
 
+.collapsed {
+  display: none;
+}
+
 .icon-folder::before {
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 12px;
+  .icon-font;
   content: "\f114";
   margin-right: 5px;
 }
 
 .icon-file::before {
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 12px;
+  .icon-font;
   content: "\f0f6";
   margin-right: 5px;
 }
@@ -70,14 +77,4 @@ file-tree {
   padding: 0;
   list-style: none;
   cursor: default;
-}
-
-.file-tree-container {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 0%;
-  width: 100%;
-  overflow: auto;
 }

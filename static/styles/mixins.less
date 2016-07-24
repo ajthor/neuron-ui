@@ -1,0 +1,37 @@
+//
+//  Mixins
+//
+.workspace-font {
+  font-family: '.SFNSText-Regular', 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+  font-size: @workspace-font-size;
+  font-weight: 100;
+}
+
+.editor-font {
+  font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  font-weight: lighter;
+  font-size: @editor-font-size;
+}
+
+.icon-font {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: @workspace-font-size;
+}
+
+.scrollable {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+  width: 100%;
+  overflow: auto;
+}
+
+.resizable {
+  position: relative;
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  cursor: default;
+}

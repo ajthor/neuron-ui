@@ -1,10 +1,6 @@
-// Imports
-// Highest precedence at the bottom.
-
-// Variable declarations.
-
-// Styles
-
+//
+// Generic editor styles.
+//
 workspace-pane {
   position: relative;
   display: flex;
@@ -13,96 +9,10 @@ workspace-pane {
   flex-shrink: 1;
   flex-basis: 0%;
   overflow: visible;
-  font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-  font-weight: lighter;
-  font-size: 13px;
+  .editor-font;
 }
 
 .editors {
-  display: flex;
   position: relative;
-  flex-basis: 0%;
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-
-text-editor {
-  flex: 0 0 auto;
-  flex-direction: column;
-  overflow: auto;
-  height: 100%;
-  width: 100%;
-  background-color: @editor-background-color;
-}
-
-text-editor.active {
-  display: flex;
-}
-
-text-editor.hidden {
-  position: absolute;
-  display: none;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.editor-container {
-  display: flex;
-  width: 100%;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  font-size: 1em;
-}
-
-.editor-gutter {
-  display: flex;
-  overflow: hidden;
-  flex: 0 0 auto;
-  cursor: default;
-}
-
-.editor-contents {
-  display: flex;
-  flex: 1 1 0%;
-  cursor: text;
-}
-
-.line-numbers {
-  display: block;
-  position: relative;
-  overflow-x: hidden;
-  min-width: 1em;
-  min-height: 100%;
-  font-size: 0.8em;
-  line-height: 1em;
-}
-
-.line-number {
-  position: relative;
-  display: block;
-  white-space: nowrap;
-  text-align: right;
-  padding-left: 0.25em;
-  padding-right: 2em;
-  vertical-align: middle;
-  color: darken(@text-color, 60%);
-}
-
-.lines {
-  display: block;
-  flex: 1 1 0%;
-  min-height: 100%;
-}
-
-.line {
-  position: relative;
-  display: block;
-  min-width: 100%;
-  white-space: pre;
-  line-height: 1em;
+  .scrollable;
 }

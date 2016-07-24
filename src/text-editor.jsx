@@ -33,7 +33,8 @@ class TextEditor extends React.Component {
   // },
 
   splitFileContents(contents) {
-    return contents.split(/\r?\n/);
+    let lines = contents.split(/\r?\n/);
+    return lines;
   }
 
   loadFileContents() {
