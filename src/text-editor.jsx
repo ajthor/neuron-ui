@@ -33,14 +33,22 @@ class TextEditor extends React.Component {
   // },
 
   splitFileContents(contents) {
-    let lines = contents.split(/\r?\n/);
-    return lines;
+    return contents.split(/\r?\n/);
+  }
+
+  formatFileContents(line) {
+    if (line === '') {
+      return '\xa0';
+    }
+
+    return line;
   }
 
   loadFileContents() {
     const contents = fs.readFileAsync(this.props.path, 'utf8');
     return Promise.resolve(contents)
       .then(contents => this.splitFileContents(contents))
+      .map(contents => this.formatFileContents(contents))
       .then(contents => {
         this.setState({
           loaded: true,
@@ -57,10 +65,6 @@ class TextEditor extends React.Component {
     if (oldProps.path !== this.props.path) {
       this.loadFileContents();
     }
-  }
-
-  formatContents() {
-    // this.contents = this.props.contents;
   }
 
   render() {
