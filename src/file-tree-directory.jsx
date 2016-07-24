@@ -75,13 +75,13 @@ class FileTreeDirectory extends React.Component {
   render() {
     const directories = _.map(this.state.items.directories, dir => {
       return (
-        <FileTreeDirectory key={_.uniqueId('tree-')} path={dir} />
+        <FileTreeDirectory path={dir} />
       );
     });
 
     const files = _.map(this.state.items.files, file => {
       return (
-        <FileTreeItem key={_.uniqueId('tree-')} path={file} />
+        <FileTreeItem path={file} />
       );
     });
 

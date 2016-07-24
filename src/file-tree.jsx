@@ -27,13 +27,13 @@ class FileTree extends React.Component {
   render() {
     const directories = _.map(this.props.projectDirectories, dir => {
       return (
-        <FileTreeDirectory key={dir} path={dir} />
+        <FileTreeDirectory path={dir} />
       );
     });
 
     return (
       <file-tree>
-        <div className="scrollable">
+        <div className="file-tree-container">
           <ol className="tree-view">
             {directories}
           </ol>
