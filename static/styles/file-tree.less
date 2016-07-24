@@ -1,19 +1,28 @@
-// Imports
-// Highest precedence at the bottom.
-
-// Variable declarations.
-
-// Styles
+//
+// File Tree styles.
+//
+.file-tree-container {
+  .scrollable;
+  // display: flex;
+  // flex-direction: column;
+  // flex: 1 1 0%;
+  // width: 100%;
+  // overflow: auto;
+}
 
 file-tree {
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
   cursor: default;
-  min-width: 100px;
+  min-width: 200px;
   width: 200px;
   display: flex;
   flex-direction: column;
+
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: @panel-border-color;
 }
 
 .tree-view {
@@ -29,16 +38,30 @@ file-tree {
   cursor: default;
 }
 
-.tree-view-directory {
-
+.tree-view-directory, .tree-view-file {
+  line-height: @workspace-line-height;
 }
 
-.list-item {
+.tree-view-directory {
+  position: relative;
+}
+
+.tree-view-file {
+  padding-left: 18px;
+}
+
+.collapsed {
+  display: none;
+}
+
+.tree-list-item {
   white-space: nowrap;
+  display: list-item;
 }
 
 .directory {
   position: relative;
+  padding-left: 18px;
 }
 
 .directory-list {
@@ -46,14 +69,4 @@ file-tree {
   padding: 0;
   list-style: none;
   cursor: default;
-}
-
-.file-tree-container {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 0%;
-  width: 100%;
-  overflow: auto;
 }

@@ -1,0 +1,50 @@
+//
+//  Mixins
+//
+.workspace-font {
+  font-family: '.SFNSText-Regular', 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+  font-size: @workspace-font-size;
+  font-weight: normal;
+}
+
+.editor-font {
+  font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  font-weight: normal;
+  font-size: @editor-font-size;
+}
+
+.fontawesome-icon {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: @icon-font-size;
+  display: inline-block;
+}
+
+.octicons-icon {
+  font-family: 'Octicons';
+  font-weight: normal;
+  font-weight: normal;
+  font-size: @icon-font-size;
+  display: inline-block;
+  width: @icon-font-size;
+  height: @icon-font-size;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.scrollable {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+  width: 100%;
+  overflow: auto;
+}
+
+.resizable {
+  position: relative;
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  cursor: default;
+}

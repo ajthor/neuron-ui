@@ -9,7 +9,9 @@ const fileActions = require('./file-actions');
 class FileTreeItem extends React.Component {
   render() {
     return (
-      <li className={`tree-view-file tree-list-item`} data-path={this.props.path} onClick={this.props.openFile}>{path.parse(this.props.path).base}</li>
+      <li className={`tree-view-file tree-list-item`} onClick={this.props.openFile}>
+        <span className="name icon-file" data-path={this.props.path}>{path.parse(this.props.path).base}</span>
+      </li>
     );
   }
 }

@@ -4,10 +4,13 @@ const path = require('path');
 const _ = require('lodash');
 const Promise = require('bluebird');
 const React = require('react');
+const {connect} = require('react-redux');
 
 const utils = require('./utils');
 
 const FileTreeItem = require('./file-tree-item.jsx');
+
+const fileActions = require('./file-actions');
 
 Promise.promisifyAll(fs);
 
@@ -64,17 +67,15 @@ class FileTreeDirectory extends React.Component {
       this.setState({
         expanded: !this.state.expanded
       });
-
       return;
     }
-
     this.loadDirectoryContents();
   }
 
   render() {
-    const directories = _.map(this.state.items.directories, directory => {
+    const directories = _.map(this.state.items.directories, dir => {
       return (
-        <FileTreeDirectory path={directory} />
+        <FileTreeDirectory path={dir} />
       );
     });
 
@@ -85,9 +86,11 @@ class FileTreeDirectory extends React.Component {
     });
 
     return (
-      <li className="directory tree-list-item">
-        <span className={`directory-name tree-list-header`} data-path={this.props.path} onClick={this.toggleExpand}>{path.parse(this.props.path).base}</span>
-        <ol className={`tree-view-directory tree-view ${this.state.expanded ? 'expanded' : 'collapsed'}`}>
+      <li className="tree-view-directory tree-list-item">
+        <div className={`tree-header icon-tree-${this.state.expanded ? 'expanded' : 'collapsed'}`} onClick={this.toggleExpand}>
+          <span className="name icon-folder" data-path={this.props.path}>{path.parse(this.props.path).base}</span>
+        </div>
+        <ol className={`directory ${this.state.expanded ? 'expanded' : 'collapsed'}`}>
           {directories}
           {files}
         </ol>

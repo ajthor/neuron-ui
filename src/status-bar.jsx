@@ -9,7 +9,9 @@ class StatusBar extends React.Component {
   render() {
     return (
       <status-bar class="status-bar">
-        <div className="status-bar-left">{this.props.activeFile ? this.props.activeFile.path : ''}</div>
+        <div className="status-bar-left">
+          <span className="file-name">{this.props.activeFile ? this.props.activeFile.path : ''}</span>
+        </div>
         <div className="status-bar-right"></div>
       </status-bar>
     );

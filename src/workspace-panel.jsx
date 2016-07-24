@@ -7,7 +7,6 @@
 // on the state of the application whatsoever. The sole job of panels is to
 // organize code within the application and apply layout styles to the
 // components within or to have a (usually flexbox) style that it uses.
-// As such, we are not going to connect the panels to Redux.
 const React = require('react');
 
 class WorkspacePanel extends React.Component {

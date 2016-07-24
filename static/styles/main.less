@@ -1,56 +1,31 @@
 // Imports
 // Highest precedence at the bottom.
+@import "variables.less";
+@import (reference) "mixins.less";
+@import "core.less";
+@import "icons.less";
 @import "workspace.less";
 @import "file-tree.less";
+@import "status-bar.less";
+@import "tab-view.less";
 @import "editor.less";
+@import "text-editor.less";
 
-// Variable declarations.
-@window-background-color: #1B1D23;
+// FontAwesome import.
+@import "../../node_modules/font-awesome/less/font-awesome.less";
+@fa-font-path: "../fonts";
 
-// Styles
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-body {
-  display: block;
-  background-color: @window-background-color;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-}
-
-ol {
-  list-style-type: none;
-  padding-left: 0px;
-}
-
-li {
-  display: list-item;
-}
-
-.scrollable {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 0%;
-  width: 100%;
-  overflow: auto;
-}
-
-.resizable {
-
-}
-
-.collapsed {
-  display: none;
-} 
+// Octicons import.
+@import "../../node_modules/octicons/build/font/octicons.min.css";
+// @octo-font-path: "../../node_modules/octicons/build/font";
+// @font-face {
+//   font-family:"Octicons";
+//   src:url("@{octo-font-path}/octicons.eot?ef21c39f0ca9b1b5116e5eb7ac5eabe6");
+//   src:url("@{octo-font-path}/octicons.eot?#iefix") format("embedded-opentype"),
+// 		url("@{octo-font-path}/octicons.woff2?ef21c39f0ca9b1b5116e5eb7ac5eabe6") format("woff2"),
+// 		url("@{octo-font-path}/octicons.woff?ef21c39f0ca9b1b5116e5eb7ac5eabe6") format("woff"),
+// 		url("@{octo-font-path}/octicons.ttf?ef21c39f0ca9b1b5116e5eb7ac5eabe6") format("truetype"),
+// 		url("@{octo-font-path}/octicons.svg?ef21c39f0ca9b1b5116e5eb7ac5eabe6#octicons") format("svg");
+//   font-weight:normal;
+//   font-style:normal;
+// }

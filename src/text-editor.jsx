@@ -18,7 +18,7 @@ class TextEditor extends React.Component {
     super(props);
     this.state = {
       loaded: false,
-      raw: ''
+      contents: ['']
     };
   }
 
@@ -32,13 +32,27 @@ class TextEditor extends React.Component {
   //   }
   // },
 
+  splitFileContents(contents) {
+    return contents.split(/\r?\n/);
+  }
+
+  formatFileContents(line) {
+    if (line === '') {
+      return '\xa0';
+    }
+
+    return line;
+  }
+
   loadFileContents() {
     const contents = fs.readFileAsync(this.props.path, 'utf8');
     return Promise.resolve(contents)
+      .then(contents => this.splitFileContents(contents))
+      .map(contents => this.formatFileContents(contents))
       .then(contents => {
         this.setState({
           loaded: true,
-          raw: contents
+          contents
         });
       });
   }
@@ -47,18 +61,39 @@ class TextEditor extends React.Component {
     this.loadFileContents();
   }
 
-  componentWillReceiveProps() {
-
-  }
-
-  formatContents() {
-    this.contents = this.props.contents;
+  componentDidUpdate(oldProps, oldState) {
+    if (oldProps.path !== this.props.path) {
+      this.loadFileContents();
+    }
   }
 
   render() {
+    const lines = _.map(this.state.contents, (line, index) => {
+      return (
+        <div className="line" key={index} data-line-index={index}>{line}</div>
+      );
+    });
+
+    const lineNumbers = _.map(this.state.contents, (line, index) => {
+      return (
+        <div className="line-number" key={index} data-line-index={index}>{index}</div>
+      );
+    });
+
     return (
-      <text-editor class={`text-editor${this.props.active ? ' active' : ''}`}>
-        <div>{this.state.raw}</div>
+      <text-editor class={`text-editor${this.props.active ? ' active' : ' hidden'}`} data-path={this.props.path}>
+        <div className="editor-container">
+          <div className="editor-gutter">
+            <div className="line-numbers">
+              {lineNumbers}
+            </div>
+          </div>
+          <div className="editor-contents">
+            <div className="lines">
+              {lines}
+            </div>
+          </div>
+        </div>
       </text-editor>
     );
   }
@@ -74,4 +109,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
 });
 
+// module.exports = connect(mapStateToProps, mapDispatchToProps)(TextEditor);
 module.exports = TextEditor;

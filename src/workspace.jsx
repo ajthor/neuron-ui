@@ -30,9 +30,9 @@ const StatusBar = require('./status-bar.jsx');
 //       - Left pane.
 //         - FileTree
 //     - Middle panel.
-//       - Top pane.
+//       - Top panel.
 //         - Tabs
-//       - Middle pane.
+//       - Middle panel.
 //         - Splicer
 //         - Editor
 //         - BlockDiagram
@@ -42,8 +42,11 @@ class Workspace extends React.Component {
   render() {
     return (
       <workspace className="workspace">
+        <WorkspacePanel classStyle="header">
+
+        </WorkspacePanel>
         <WorkspacePanel classStyle="horizontal">
-          <WorkspacePanel classStyle="left resizable">
+          <WorkspacePanel classStyle="left">
             <FileTree />
           </WorkspacePanel>
           <WorkspacePanel classStyle="vertical">
@@ -58,7 +61,7 @@ class Workspace extends React.Component {
             </WorkspacePanel>
           </WorkspacePanel>
         </WorkspacePanel>
-        <WorkspacePanel classStyle="bottom">
+        <WorkspacePanel classStyle="footer">
           <StatusBar />
         </WorkspacePanel>
       </workspace>

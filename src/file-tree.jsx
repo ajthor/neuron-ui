@@ -8,7 +8,7 @@ const {connect} = require('react-redux');
 const utils = require('./utils');
 
 const FileTreeDirectory = require('./file-tree-directory.jsx');
-const FileTreeItem = require('./file-tree-item.jsx');
+// const FileTreeItem = require('./file-tree-item.jsx');
 
 //
 // File Tree Component
@@ -17,6 +17,13 @@ const FileTreeItem = require('./file-tree-item.jsx');
 // a menu item later, but this component merely renders the project
 // directories' contents.
 class FileTree extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
   render() {
     const directories = _.map(this.props.projectDirectories, dir => {
       return (
@@ -26,8 +33,8 @@ class FileTree extends React.Component {
 
     return (
       <file-tree>
-        <div className="scrollable">
-          <ol className="tree-view tree-list">
+        <div className="file-tree-container">
+          <ol className="tree-view">
             {directories}
           </ol>
         </div>
