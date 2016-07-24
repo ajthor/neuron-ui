@@ -72,6 +72,10 @@ gulp.task('build-styles', () =>
       module: {
         loaders: [
           {
+            test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
+            loader: 'file-loader'
+          },
+          {
             test: /\.less$/,
             loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
           }

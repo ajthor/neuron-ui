@@ -58,7 +58,7 @@ class Workspace extends React.Component {
             </WorkspacePanel>
           </WorkspacePanel>
         </WorkspacePanel>
-        <WorkspacePanel classStyle="bottom">
+        <WorkspacePanel classStyle="footer">
           <StatusBar />
         </WorkspacePanel>
       </workspace>

@@ -27,7 +27,7 @@ class FileTree extends React.Component {
   render() {
     const directories = _.map(this.props.projectDirectories, dir => {
       return (
-        <FileTreeDirectory path={dir} />
+        <FileTreeDirectory key={dir} path={dir} />
       );
     });
 

@@ -65,14 +65,29 @@ class TextEditor extends React.Component {
   render() {
     const lines = _.map(this.state.contents, (line, index) => {
       return (
-        <div className="line" key={index}>{line}</div>
+        <div className="line" key={index} data-line-index={index}>{line}</div>
+      );
+    });
+
+    const lineNumbers = _.map(this.state.contents, (line, index) => {
+      return (
+        <div className="line-number" key={index} data-line-index={index}>{index}</div>
       );
     });
 
     return (
       <text-editor class={`text-editor${this.props.active ? ' active' : ' hidden'}`} data-path={this.props.path}>
-        <div className="editor-contents scrollable">
-          {lines}
+        <div className="editor-container">
+          <div className="editor-gutter">
+            <div className="line-numbers">
+              {lineNumbers}
+            </div>
+          </div>
+          <div className="editor-contents">
+            <div className="lines">
+              {lines}
+            </div>
+          </div>
         </div>
       </text-editor>
     );

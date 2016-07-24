@@ -2,8 +2,6 @@
 // Highest precedence at the bottom.
 
 // Variable declarations.
-@text-color: #ffffff;
-@workspace-background: #21252b;
 
 // Styles
 workspace {
@@ -12,12 +10,21 @@ workspace {
   height: 100%;
   overflow: hidden;
   position: relative;
-  background-color: @workspace-background;
+  background-color: @workspace-background-color;
   color: @text-color;
 }
 
 workspace-panel {
   display: flex;
+}
+
+workspace-panel.top, workspace-panel.bottom {
+  display: block;
+}
+
+workspace-panel.middle {
+  display: flex;
+  flex: 1 1 0%;
 }
 
 workspace-panel.horizontal {
@@ -37,14 +44,9 @@ workspace-panel.vertical {
   flex-grow: 1;
   flex-shrink: 1;
   flex-direction: column;
+  position: relative;
 }
 
 workspace-panel.left {
   display: flex;
-}
-
-workspace-pane {
-  position: relative;
-  display: flex;
-  flex-grow: 1;
 }

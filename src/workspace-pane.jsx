@@ -19,7 +19,7 @@ let WorkspacePane = React.createClass({
       return (
         <li className={`tab-view-item ${file.active ? 'active' : 'inactive'}`} key={file.key} data-path={file.path}>
           <span onClick={() => this.props.setActive(file)}>{path.parse(file.path).base}</span>
-          <span className="close-button" onClick={() => this.props.closeFile(file)}>{` \u{2A2F} `}</span>
+          <span className="close-button" onClick={() => this.props.closeFile(file)}>{`\u{2A2F}`}</span>
         </li>
       );
     });

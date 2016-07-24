@@ -67,30 +67,28 @@ class FileTreeDirectory extends React.Component {
       this.setState({
         expanded: !this.state.expanded
       });
-
       return;
     }
-
     this.loadDirectoryContents();
   }
 
   render() {
     const directories = _.map(this.state.items.directories, dir => {
       return (
-        <FileTreeDirectory path={dir} />
+        <FileTreeDirectory key={_.uniqueId('tree-')} path={dir} />
       );
     });
 
     const files = _.map(this.state.items.files, file => {
       return (
-        <FileTreeItem path={file} />
+        <FileTreeItem key={_.uniqueId('tree-')} path={file} />
       );
     });
 
     return (
       <li className="tree-view-directory list-item">
         <div className="list-header" onClick={this.toggleExpand}>
-          <span className="name" data-path={this.props.path}>{path.parse(this.props.path).base}</span>
+          <span className="name icon-folder" data-path={this.props.path}>{path.parse(this.props.path).base}</span>
         </div>
         <ol className={`directory ${this.state.expanded ? 'expanded' : 'collapsed'}`}>
           {directories}
@@ -101,16 +99,4 @@ class FileTreeDirectory extends React.Component {
   }
 }
 
-// const mapStateToProps = (store, ownProps) => {
-//   return {};
-// };
-//
-// const mapDispatchToProps = (dispatch, ownProps) => ({
-//   openFile: (path) => {
-//     dispatch(fileActions.openFile(path));
-//     dispatch(fileActions.setActive(path));
-//   }
-// });
-//
-// module.exports = connect(mapStateToProps, mapDispatchToProps)(FileTreeDirectory);
 module.exports = FileTreeDirectory;
