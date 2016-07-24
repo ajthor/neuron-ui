@@ -1,8 +1,9 @@
 // Imports
 // Highest precedence at the bottom.
 @import "variables.less";
-@import "mixins.less";
+@import (reference) "mixins.less";
 @import "core.less";
+@import "icons.less";
 @import "workspace.less";
 @import "file-tree.less";
 @import "status-bar.less";
@@ -13,3 +14,18 @@
 // FontAwesome import.
 @import "../../node_modules/font-awesome/less/font-awesome.less";
 @fa-font-path: "../fonts";
+
+// Octicons import.
+@import "../../node_modules/octicons/build/font/octicons.min.css";
+// @octo-font-path: "../../node_modules/octicons/build/font";
+// @font-face {
+//   font-family:"Octicons";
+//   src:url("@{octo-font-path}/octicons.eot?ef21c39f0ca9b1b5116e5eb7ac5eabe6");
+//   src:url("@{octo-font-path}/octicons.eot?#iefix") format("embedded-opentype"),
+// 		url("@{octo-font-path}/octicons.woff2?ef21c39f0ca9b1b5116e5eb7ac5eabe6") format("woff2"),
+// 		url("@{octo-font-path}/octicons.woff?ef21c39f0ca9b1b5116e5eb7ac5eabe6") format("woff"),
+// 		url("@{octo-font-path}/octicons.ttf?ef21c39f0ca9b1b5116e5eb7ac5eabe6") format("truetype"),
+// 		url("@{octo-font-path}/octicons.svg?ef21c39f0ca9b1b5116e5eb7ac5eabe6#octicons") format("svg");
+//   font-weight:normal;
+//   font-style:normal;
+// }

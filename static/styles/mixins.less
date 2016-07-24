@@ -4,20 +4,33 @@
 .workspace-font {
   font-family: '.SFNSText-Regular', 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
   font-size: @workspace-font-size;
-  font-weight: 100;
+  font-weight: normal;
 }
 
 .editor-font {
   font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-  font-weight: lighter;
+  font-weight: normal;
   font-size: @editor-font-size;
 }
 
-.icon-font {
+.fontawesome-icon {
   font-family: FontAwesome;
   font-weight: normal;
   font-style: normal;
-  font-size: @workspace-font-size;
+  font-size: @icon-font-size;
+  display: inline-block;
+}
+
+.octicons-icon {
+  font-family: 'Octicons';
+  font-weight: normal;
+  font-weight: normal;
+  font-size: @icon-font-size;
+  display: inline-block;
+  width: @icon-font-size;
+  height: @icon-font-size;
+  text-decoration: none;
+  line-height: 1;
 }
 
 .scrollable {
