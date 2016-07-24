@@ -23,7 +23,6 @@ class FileTreeDirectory extends React.Component {
       items: {}
     };
 
-    // this.loadDirectoryContents = this.loadDirectoryContents.bind(this);
     this.toggleExpand = this.toggleExpand.bind(this);
   }
 
@@ -70,6 +69,12 @@ class FileTreeDirectory extends React.Component {
       return;
     }
     this.loadDirectoryContents();
+  }
+
+  componentWillMount() {
+    if (this.props.projectDirectory) {
+      this.loadDirectoryContents();
+    }
   }
 
   render() {

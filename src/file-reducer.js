@@ -6,7 +6,14 @@ const utils = require('./utils');
 // Model of initial file state.
 //
 const initialState = {
-  openFiles: [],
+  openFiles: [
+    {
+      path: '/Users/adam/Google Drive/projects/neuron-ui/package.json',
+      active: true,
+      encoding: 'utf8',
+      key: _.uniqueId()
+    }
+  ],
   projectDirectories: ['./']
 };
 
