@@ -28,6 +28,7 @@ const fileActions = {
         obj.push({
           path: payload,
           active: false,
+          encoding: 'utf8',
           key: _.uniqueId()
         });
       }
@@ -68,6 +69,17 @@ const fileActions = {
             }
           }
 
+          return false;
+        }
+      });
+    });
+  },
+
+  CHANGE_ENCODING: (state, payload) => {
+    return utils.updateObject(state, 'openFiles', obj => {
+      obj.forEach(file => {
+        if (file.path === payload.path) {
+          file.encoding = payload.encoding;
           return false;
         }
       });

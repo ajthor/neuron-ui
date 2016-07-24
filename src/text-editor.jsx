@@ -45,7 +45,7 @@ class TextEditor extends React.Component {
   }
 
   loadFileContents() {
-    const contents = fs.readFileAsync(this.props.path, 'utf8');
+    const contents = fs.readFileAsync(this.props.path, this.props.encoding);
     return Promise.resolve(contents)
       .then(contents => this.splitFileContents(contents))
       .map(contents => this.formatFileContents(contents))

@@ -18,22 +18,40 @@ status-bar {
   border-top-width: 1px;
 }
 
-.status-bar-left .status-bar-right {
+.status-bar-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.status-bar-left, .status-bar-right {
   overflow-x: auto;
+  display: block;
 }
 
 .status-bar-left {
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 40%;
+  flex: 1 1 40%;
   padding-left: 10px;
+  padding-right: 5px;
 }
 
 .status-bar-right {
   padding-right: 10px;
 }
 
-status-bar.file-info {
+.status-bar-left span, .status-bar-right span {
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+}
+
+.status-file-name {
+  display: inline-block;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status-file-encoding {
+  display: inline-block;
   white-space: nowrap;
 }

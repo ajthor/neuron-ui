@@ -34,6 +34,14 @@ const actions = {
   setNextActive: path => ({
     type: 'SET_NEXT_ACTIVE',
     payload: path
+  }),
+
+  changeEncoding: (path, encoding) => ({
+    type: 'CHANGE_ENCODING',
+    payload: {
+      path,
+      encoding
+    }
   })
 
 };

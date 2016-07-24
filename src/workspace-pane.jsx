@@ -2,8 +2,8 @@
 //
 // Workspace Pane
 //
-const _ = require('lodash');
 const path = require('path');
+const _ = require('lodash');
 const React = require('react');
 const {connect} = require('react-redux');
 
