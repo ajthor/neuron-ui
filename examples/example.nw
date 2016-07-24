@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "name": "somename"
+  },
+  "layers": [
+    {
+      "type": "input",
+      "neurons": 1,
+      "path": ""
+    },
+    {
+      "type": "feed-through",
+      "neurons": 1,
+      "transfer": "tansig",
+      "bias": true
+    }
+  ]
+}

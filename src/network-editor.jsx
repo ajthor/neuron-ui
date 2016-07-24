@@ -9,46 +9,27 @@ const {connect} = require('react-redux');
 
 const utils = require('./utils');
 
-const Input = require('./input.jsx');
+const NetworkEditorLayer = require('./network-editor-layer.jsx');
 
 Promise.promisifyAll(fs);
 
-class TextEditor extends React.Component {
+class NetworkEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loaded: false,
-      contents: ['\xa0']
+      contents: {}
     };
   }
 
-  // handleKeyUp: function(e) {
-  //   e.preventDefault();
-  //   if (e.key == 'Enter') {
-  //     let text = this.state.text;
-  //     this.props.onSubmit({text: text});
-  //
-  //     this.setState({text: ''});
-  //   }
-  // },
-
-  splitFileContents(contents) {
-    return contents.split(/\r?\n/);
-  }
-
-  formatFileContents(line) {
-    if (line === '') {
-      return '\xa0';
-    }
-
-    return line;
+  parseFileContents(contents) {
+    return JSON.parse(contents);
   }
 
   loadFileContents() {
     const contents = fs.readFileAsync(this.props.path, this.props.encoding);
     return Promise.resolve(contents)
-      .then(contents => this.splitFileContents(contents))
-      .map(contents => this.formatFileContents(contents))
+      .then(contents => this.parseFileContents(contents))
       .then(contents => {
         this.setState({
           loaded: true,
@@ -68,29 +49,27 @@ class TextEditor extends React.Component {
   }
 
   render() {
-    const lines = _.map(this.state.contents, (line, index) => {
-      return (
-        <div className="line" key={index} data-line-index={index}>{line}</div>
-      );
-    });
-
-    const lineNumbers = _.map(this.state.contents, (line, index) => {
-      return (
-        <div className="line-number" key={index} data-line-index={index}>{index}</div>
-      );
-    });
+    let layers = [];
+    if (this.state.contents.layers) {
+      layers = _.map(this.state.contents.layers, (layer, index) => {
+        return (
+          <NetworkEditorLayer key={index} {...layer} {...this.state.contents.meta} />
+        );
+      });
+    }
 
     return (
       <text-editor class={`text-editor${this.props.active ? ' active' : ' hidden'}`} data-path={this.props.path}>
         <div className="editor-container">
           <div className="editor-gutter">
             <div className="line-numbers">
-              {lineNumbers}
+
             </div>
           </div>
           <div className="editor-contents">
-            <div className="lines">
-              {lines}
+            <div className="layers">
+              {layers}
+              {"\u2211"}
             </div>
           </div>
         </div>
@@ -109,5 +88,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
 });
 
-// module.exports = connect(mapStateToProps, mapDispatchToProps)(TextEditor);
-module.exports = TextEditor;
+// module.exports = connect(mapStateToProps, mapDispatchToProps)(NetworkEditor);
+module.exports = NetworkEditor;

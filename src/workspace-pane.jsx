@@ -12,9 +12,10 @@ const utils = require('./utils');
 const fileActions = require('./file-actions');
 
 const TextEditor = require('./text-editor.jsx');
+const NetworkEditor = require('./network-editor.jsx');
 
-let WorkspacePane = React.createClass({
-  render: function() {
+class WorkspacePane extends React.Component {
+  render() {
     const tabs = _.map(this.props.openFiles, file => {
       return (
         <li className={`tab-view-item ${file.active ? 'active' : 'inactive'}`} key={file.key} data-path={file.path}>
@@ -25,12 +26,18 @@ let WorkspacePane = React.createClass({
     });
 
     const editors = _.map(this.props.openFiles, file => {
+      const extension = path.parse(file.path).ext;
+      if (extension === '.nw') {
+        return (
+          <NetworkEditor key={file.key} {...file} />
+        );
+      }
       return (
         <TextEditor key={file.key} {...file} />
       );
     });
 
-    const activeFile = _.find(this.props.openFiles, {'active': true});
+    const activeFile = _.find(this.props.openFiles, {active: true});
 
     return (
       <workspace-pane class={`${this.props.classStyle || ''}`} active={activeFile ? activeFile.path : ''}>
@@ -43,7 +50,7 @@ let WorkspacePane = React.createClass({
       </workspace-pane>
     );
   }
-});
+}
 
 const mapStateToProps = (store, ownProps) => {
   const openFiles = utils.getDeep(store, 'openFiles');
@@ -53,11 +60,11 @@ const mapStateToProps = (store, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  setActive: (file) => {
+  setActive: file => {
     dispatch(fileActions.setActive(file.path));
   },
 
-  closeFile: (file) => {
+  closeFile: file => {
     if (file.active) {
       dispatch(fileActions.setNextActive(file.path));
     }
