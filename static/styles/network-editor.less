@@ -1,0 +1,57 @@
+//
+// Network Editor styles.
+//
+network-editor {
+  flex: 0 0 auto;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+  color: @editor-text-color;
+  background-color: @editor-background-color;
+}
+
+.block-diagram {
+  flex: 1 1 0%;
+  display: flex;
+  overflow-x: hidden;
+}
+
+.layer {
+  display: flex;
+  position: relative;
+  white-space: pre;
+  flex-direction: column;
+  padding-left: 1em;
+  padding-right: 1em;
+  min-width: 2em;
+  border-right: 1px solid lighten(@editor-background-color, 5%);
+}
+
+.layer:hover {
+  background-color: lighten(@editor-background-color, 1%);
+}
+
+.neuron-container {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+}
+
+.neuron {
+  display: block;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  flex: 0 0 auto;
+}
+
+.block {
+  display: inline-block;
+  font-size: @block-font-size;
+  height: 2em;
+  width: 2em;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid lighten(@editor-background-color, 5%);
+  padding: 0.25em;
+}

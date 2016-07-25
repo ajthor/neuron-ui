@@ -9,7 +9,7 @@ const {connect} = require('react-redux');
 
 const utils = require('./utils');
 
-const NetworkEditorLayer = require('./network-editor-layer.jsx');
+const NeuronBlocks = require('./network-editor-blocks.jsx');
 
 Promise.promisifyAll(fs);
 
@@ -49,31 +49,50 @@ class NetworkEditor extends React.Component {
   }
 
   render() {
-    let layers = [];
+    let blockLayers = [];
     if (this.state.contents.layers) {
-      layers = _.map(this.state.contents.layers, (layer, index) => {
+      blockLayers = _.map(this.state.contents.layers, (layer, index) => {
+        const neurons = _.map(layer.neurons, neuron => {
+          return React.createElement(NeuronBlocks[neuron.type], neuron);
+        });
+
         return (
-          <NetworkEditorLayer key={index} {...layer} {...this.state.contents.meta} />
+          <div className="layer" data-layer={index + 1}>
+            <div className="layer-header header"><span className="name">{`Layer ${index + 1}`}</span></div>
+            {neurons}
+          </div>
         );
       });
     }
 
     return (
-      <text-editor class={`text-editor${this.props.active ? ' active' : ' hidden'}`} data-path={this.props.path}>
+      <network-editor class={`network-editor${this.props.active ? ' active' : ' hidden'}`} data-path={this.props.path}>
         <div className="editor-container">
-          <div className="editor-gutter">
-            <div className="line-numbers">
-
-            </div>
-          </div>
           <div className="editor-contents">
-            <div className="layers">
-              {layers}
-              {"\u2211"}
+            <div className="ga-splicer">
+              001101010100010101010111100011000110000000111101010100100011001101010100010101010111100011000110000000111101010100100011
+            </div>
+            <div className="schematic">
+              Something
+            </div>
+            <div className="block-diagram">
+              <div className="layer">
+                <div className="layer-header header"><span className="name">Input</span></div>
+                <div className="neuron">
+
+                </div>
+              </div>
+              {blockLayers}
+              <div className="layer">
+                <div className="layer-header header"><span className="name">Output</span></div>
+                <div className="neuron">
+
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </text-editor>
+      </network-editor>
     );
   }
 }

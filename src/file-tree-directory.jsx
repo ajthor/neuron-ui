@@ -92,7 +92,7 @@ class FileTreeDirectory extends React.Component {
 
     return (
       <li className="tree-view-directory tree-list-item">
-        <div className={`tree-header icon-tree-${this.state.expanded ? 'expanded' : 'collapsed'}`} onClick={this.toggleExpand}>
+        <div className={`tree-header header icon-tree-${this.state.expanded ? 'expanded' : 'collapsed'}`} onClick={this.toggleExpand}>
           <span className="name icon-folder" data-path={this.props.path}>{path.parse(this.props.path).base}</span>
         </div>
         <ol className={`directory ${this.state.expanded ? 'expanded' : 'collapsed'}`}>

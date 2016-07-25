@@ -8,7 +8,7 @@ const utils = require('./utils');
 const initialState = {
   openFiles: [
     {
-      path: '/Users/adam/Google Drive/projects/neuron-ui/package.json',
+      path: '/Users/adam/Google Drive/projects/neuron-ui/examples/example.nw',
       active: true,
       encoding: 'utf8',
       key: _.uniqueId()

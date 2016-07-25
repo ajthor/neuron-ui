@@ -8,7 +8,6 @@
 .tab-view {
   position: relative;
   display: flex;
-  flex: 0 0 3em;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
@@ -16,7 +15,7 @@
   overflow-y: hidden;
   list-style-type: none;
   margin: 0 0 0 0;
-  border-bottom: 1px solid @panel-border-color;
+  // border-bottom: 1px solid @panel-border-color;
   cursor: default;
 }
 
@@ -32,6 +31,8 @@
   padding-right: 5px;
   border-right: 1px solid @panel-border-color;
   font-size: 11px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .close-button {
@@ -39,7 +40,7 @@
   padding-right: 0.5em;
 }
 
-.tab-view-item .active {
+.tab-view .active {
   border-bottom: 0px;
   background-color: @editor-background-color;
 }

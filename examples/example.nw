@@ -1,18 +1,42 @@
 {
   "meta": {
-    "name": "somename"
+    "name": "somename",
+    "input": {
+      "path": ""
+    }
   },
   "layers": [
     {
-      "type": "input",
-      "neurons": 1,
-      "path": ""
+      "neurons": [
+        {
+          "type": "feed-through",
+          "transfer": "tansig",
+          "bias": true
+        }
+      ]
     },
     {
-      "type": "feed-through",
-      "neurons": 1,
-      "transfer": "tansig",
-      "bias": true
+      "neurons": [
+        {
+          "type": "multi-feed-through",
+          "transfer": "tansig",
+          "bias": true
+        },
+        {
+          "type": "feed-through",
+          "transfer": "tansig",
+          "bias": false
+        }
+      ]
+    },
+    {
+      "neurons": [
+        {
+          "type": "recurrent",
+          "transfer": "tansig",
+          "bias": true
+        }
+      ]
     }
   ]
 }
