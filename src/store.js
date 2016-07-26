@@ -1,15 +1,14 @@
+'use strict';
+
 const Redux = require('redux');
 
-//
-// Redux Reducers
-//
-const fileReducer = require('./file-reducer');
+const FileReducer = require('./file-reducer');
 
 //
 // Redux Store
 //
 const store = Redux.createStore(Redux.combineReducers({
-  fileReducer
+  FileReducer
 }));
 
 module.exports = store;

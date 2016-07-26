@@ -1,4 +1,5 @@
 'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
@@ -42,7 +43,7 @@ class NetworkEditor extends React.Component {
     this.loadFileContents();
   }
 
-  componentDidUpdate(oldProps, oldState) {
+  componentDidUpdate(oldProps) {
     if (oldProps.path !== this.props.path) {
       this.loadFileContents();
     }

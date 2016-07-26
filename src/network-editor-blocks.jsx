@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 
 class FeedThrough extends React.Component {

@@ -1,4 +1,5 @@
 'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
@@ -8,8 +9,6 @@ const React = require('react');
 const {connect} = require('react-redux');
 
 const utils = require('./utils');
-
-const Input = require('./input.jsx');
 
 Promise.promisifyAll(fs);
 
@@ -21,16 +20,6 @@ class TextEditor extends React.Component {
       contents: ['\xa0']
     };
   }
-
-  // handleKeyUp: function(e) {
-  //   e.preventDefault();
-  //   if (e.key == 'Enter') {
-  //     let text = this.state.text;
-  //     this.props.onSubmit({text: text});
-  //
-  //     this.setState({text: ''});
-  //   }
-  // },
 
   splitFileContents(contents) {
     return contents.split(/\r?\n/);

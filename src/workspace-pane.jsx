@@ -9,7 +9,7 @@ const {connect} = require('react-redux');
 
 const utils = require('./utils');
 
-const fileActions = require('./file-actions');
+const FileActions = require('./file-actions');
 
 const TextEditor = require('./text-editor.jsx');
 const NetworkEditor = require('./network-editor.jsx');
@@ -61,14 +61,14 @@ const mapStateToProps = (store, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   setActive: file => {
-    dispatch(fileActions.setActive(file.path));
+    dispatch(FileActions.setActive(file.path));
   },
 
   closeFile: file => {
     if (file.active) {
-      dispatch(fileActions.setNextActive(file.path));
+      dispatch(FileActions.setNextActive(file.path));
     }
-    dispatch(fileActions.closeFile(file.path));
+    dispatch(FileActions.closeFile(file.path));
   }
 });
 

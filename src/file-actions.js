@@ -1,3 +1,5 @@
+'use strict';
+
 const fs = require('fs');
 const Promise = require('bluebird');
 
@@ -5,7 +7,7 @@ Promise.promisifyAll(fs);
 //
 // File action creators.
 //
-const actions = {
+const FileActions = {
   loadProjectDirectory: directory => ({
     type: 'LOAD_PROJECT_DIRECTORY',
     payload: directory
@@ -46,4 +48,4 @@ const actions = {
 
 };
 
-module.exports = actions;
+module.exports = FileActions;

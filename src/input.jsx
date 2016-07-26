@@ -2,28 +2,29 @@
 
 const React = require('react');
 
-let Input = React.createClass({
-  getInitialState: function () {
-    return {
+class Input extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       text: ''
     };
-  },
+  }
 
-  handleKeyUp: function (e) {
+  handleKeyUp(e) {
     e.preventDefault();
-    if (e.key == 'Enter') {
-      let text = this.state.text;
-      this.props.onSubmit({text: text});
+    if (e.key === 'Enter') {
+      const text = this.state.text;
+      this.props.onSubmit({text});
 
       this.setState({text: ''});
     }
-  },
+  }
 
-  handleTextChange: function (e) {
+  handleTextChange(e) {
     this.setState({text: e.target.value});
-  },
+  }
 
-  render: function () {
+  render() {
     return (
       <input className="input" type="text"
         value={ this.state.text }
@@ -32,6 +33,6 @@ let Input = React.createClass({
       />
     );
   }
-});
+}
 
 module.exports = Input;

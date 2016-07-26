@@ -1,6 +1,7 @@
+'use strict';
+
 const _ = require('lodash');
 const utils = require('./utils');
-// const {List} = require('immutable');
 
 //
 // Model of initial file state.
@@ -94,9 +95,9 @@ const fileActions = {
   }
 };
 
-const fileReducer = (state = initialState, action) => {
+const FileReducer = (state = initialState, action) => {
   const fn = fileActions[action.type];
   return (fn ? fn(state, action.payload) : state);
 };
 
-module.exports = fileReducer;
+module.exports = FileReducer;

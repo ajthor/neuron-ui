@@ -1,16 +1,14 @@
 'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 const Promise = require('bluebird');
 const React = require('react');
-const {connect} = require('react-redux');
 
 const utils = require('./utils');
 
 const FileTreeItem = require('./file-tree-item.jsx');
-
-const fileActions = require('./file-actions');
 
 Promise.promisifyAll(fs);
 
