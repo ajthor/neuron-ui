@@ -58,6 +58,7 @@
     "xo": "^0.16.0"
   },
   "ava": {
+    "babel": "inherit",
     "files": [
       "./test/**/*.js"
     ]

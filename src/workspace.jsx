@@ -38,35 +38,31 @@ const StatusBar = require('./status-bar.jsx');
 //         - BlockDiagram
 //     - Bottom panel.
 //       - StatusBar
-class Workspace extends React.Component {
-  render() {
-    return (
-      <workspace className="workspace">
-        <WorkspacePanel classStyle="header">
+const Workspace = () => (
+  <workspace className="workspace">
+    <WorkspacePanel classStyle="header">
+
+    </WorkspacePanel>
+    <WorkspacePanel classStyle="horizontal">
+      <WorkspacePanel classStyle="left">
+        <FileTree />
+      </WorkspacePanel>
+      <WorkspacePanel classStyle="vertical">
+        <WorkspacePanel classStyle="top">
 
         </WorkspacePanel>
-        <WorkspacePanel classStyle="horizontal">
-          <WorkspacePanel classStyle="left">
-            <FileTree />
-          </WorkspacePanel>
-          <WorkspacePanel classStyle="vertical">
-            <WorkspacePanel classStyle="top">
-
-            </WorkspacePanel>
-            <WorkspacePanel classStyle="middle">
-              <WorkspacePane />
-            </WorkspacePanel>
-            <WorkspacePanel classStyle="bottom">
-
-            </WorkspacePanel>
-          </WorkspacePanel>
+        <WorkspacePanel classStyle="middle">
+          <WorkspacePane />
         </WorkspacePanel>
-        <WorkspacePanel classStyle="footer">
-          <StatusBar />
+        <WorkspacePanel classStyle="bottom">
+
         </WorkspacePanel>
-      </workspace>
-    );
-  }
-}
+      </WorkspacePanel>
+    </WorkspacePanel>
+    <WorkspacePanel classStyle="footer">
+      <StatusBar />
+    </WorkspacePanel>
+  </workspace>
+);
 
 module.exports = Workspace;

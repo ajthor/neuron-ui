@@ -3,7 +3,7 @@
 // Utils Library
 //
 // Library of utility functions, mainly used as addons for lodash.
-const _ = require('lodash');
+import _ from 'lodash';
 
 const forEachDeep = (obj, cb) => {
   _.forEach(obj, value => {
@@ -59,8 +59,12 @@ const updateObject = (obj, search, cb) => {
   return result;
 };
 
-exports.findDeep = findDeep;
-exports.forEachDeep = forEachDeep;
-exports.getDeep = getDeep;
-exports.mapDeep = mapDeep;
-exports.updateObject = updateObject;
+const utils = {
+  findDeep,
+  forEachDeep,
+  getDeep,
+  mapDeep,
+  updateObject
+};
+
+module.exports = utils;

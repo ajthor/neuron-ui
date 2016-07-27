@@ -1,9 +1,5 @@
 'use strict';
 
-const fs = require('fs');
-const Promise = require('bluebird');
-
-Promise.promisifyAll(fs);
 //
 // File action creators.
 //
@@ -48,4 +44,4 @@ const FileActions = {
 
 };
 
-module.exports = FileActions;
+export default FileActions;

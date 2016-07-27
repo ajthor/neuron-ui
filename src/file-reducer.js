@@ -1,7 +1,7 @@
 'use strict';
 
-const _ = require('lodash');
-const utils = require('./utils');
+import _ from 'lodash';
+import utils from './utils';
 
 //
 // Model of initial file state.
@@ -100,4 +100,6 @@ const FileReducer = (state = initialState, action) => {
   return (fn ? fn(state, action.payload) : state);
 };
 
+// FIXME: For some reason, this cannot be changed to an 'export' statement.
+// Figure out why.
 module.exports = FileReducer;

@@ -6,6 +6,7 @@ const babel = require('gulp-babel');
 const changed = require('gulp-changed');
 const less = require('gulp-less');
 const util = require('gulp-util');
+// const webpack = require('webpack');
 const webpack = require('gulp-webpack');
 const xo = require('gulp-xo');
 
@@ -50,7 +51,10 @@ gulp.task('build-scripts', () =>
           {
             test: /\.jsx?/,
             exclude: /node_modules/,
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            query: {
+              presets: ['es2015', 'react']
+            }
           }
         ]
       }
