@@ -39,7 +39,7 @@ file-tree {
 }
 
 .tree-view-directory, .tree-view-file {
-  line-height: @workspace-line-height;
+  line-height: @file-tree-line-height;
 }
 
 .tree-view-directory {
@@ -48,6 +48,13 @@ file-tree {
 
 .tree-view-file {
   padding-left: 18px;
+}
+
+.selected::before {
+  left: 0;
+  right: 0;
+  position: absolute;
+  background-color: lighten(@workspace-background-color, 10%);
 }
 
 .collapsed {
@@ -69,4 +76,8 @@ file-tree {
   padding: 0;
   list-style: none;
   cursor: default;
+}
+
+.name:hover {
+  color: lighten(@workspace-text-color, 15%);
 }

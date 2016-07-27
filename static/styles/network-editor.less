@@ -11,21 +11,37 @@ network-editor {
   background-color: @editor-background-color;
 }
 
+.splicer {
+  display: block;
+  flex: 0 0 4em;
+}
+
+.schematic {
+  flex: 1 1 70%;
+}
+
 .block-diagram {
-  flex: 1 1 0%;
+  flex: 1 1 30%;
+  position: relative;
   display: flex;
-  overflow-x: hidden;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: auto;
+  cursor: default;
+  border-top: 1px solid @workspace-border-color;
+  flex-direction: row;
 }
 
 .layer {
-  display: flex;
+  display: inline-block;
+  flex: 1 1 0%;
   position: relative;
   white-space: pre;
   flex-direction: column;
   padding-left: 1em;
   padding-right: 1em;
   min-width: 2em;
-  border-right: 1px solid lighten(@editor-background-color, 5%);
+  border-right: 1px solid @workspace-border-color;
 }
 
 .layer:hover {
@@ -35,16 +51,21 @@ network-editor {
 .neuron-container {
   display: flex;
   position: relative;
-  flex-direction: row;
+  flex-direction: column;
+  height: 100%;
 }
 //
 // Neuron styles.
 //
 .neuron {
-  display: block;
+  display: flex;
   padding-top: 1em;
   padding-bottom: 1em;
   flex: 0 0 auto;
+}
+
+.block-column {
+  display: inline-block;
 }
 
 .block {
@@ -54,6 +75,26 @@ network-editor {
   width: 2em;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid lighten(@editor-background-color, 5%);
   padding: 0.25em;
+}
+
+.bordered {
+  border: 1px solid lighten(@editor-background-color, 5%);
+}
+
+.block-node {
+  .block;
+  .bordered;
+  width: 1em;
+  height: 1em;
+  margin: 0.5em;
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+.bias-node::before {
+  content: '';
+  left: 0;
+  top: -2em;
+  border-right: 1px solid lighten(@editor-background-color, 5%);
 }

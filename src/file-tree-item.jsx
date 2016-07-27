@@ -1,9 +1,12 @@
 'use strict';
 
 const path = require('path');
+const _ = require('lodash');
 
 const React = require('react');
 const {connect} = require('react-redux');
+
+const utils = require('./utils');
 
 const FileActions = require('./file-actions');
 
@@ -18,7 +21,15 @@ class FileTreeItem extends React.Component {
 }
 
 const mapStateToProps = (store, ownProps) => {
-  return {};
+  // const openFiles = utils.getDeep(store, 'openFiles');
+  // const activeFile = _.find(openFiles, {active: true});
+  // let active;
+  // if (ownProps.path === activeFile.path) {
+  //   active = true;
+  // }
+  return {
+    // active
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

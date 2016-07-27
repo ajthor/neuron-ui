@@ -6,8 +6,13 @@ class FeedThrough extends React.Component {
   render() {
     return (
       <div className="neuron" data-neuron-type={this.props.type}>
-        <span className="block">{'\u2211'}</span>
-        <span className="block">{'\u0192'}</span>
+        <div className="block-column">
+          <span className="block bordered">{'\u2211'}</span>
+          <span className="block-node bias-node"></span>
+        </div>
+        <div className="block-column">
+          <span className="block bordered">{'\u0192'}</span>
+        </div>
       </div>
     );
   }
@@ -17,8 +22,9 @@ class MultiFeedThrough extends React.Component {
   render() {
     return (
       <div className="neuron" data-neuron-type={this.props.type}>
-        <span className="block">{'\u2295'}</span>
-        <span className="block">{'\u0192'}</span>
+        <span className="block bordered">W</span>
+        <span className="block bordered">{'\u2297'}</span>
+        <span className="block bordered">{'\u0192'}</span>
       </div>
     );
   }

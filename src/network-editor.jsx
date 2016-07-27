@@ -70,7 +70,7 @@ class NetworkEditor extends React.Component {
       <network-editor class={`network-editor${this.props.active ? ' active' : ' hidden'}`} data-path={this.props.path}>
         <div className="editor-container">
           <div className="editor-contents">
-            <div className="ga-splicer">
+            <div className="splicer">
               001101010100010101010111100011000110000000111101010100100011001101010100010101010111100011000110000000111101010100100011
             </div>
             <div className="schematic">
