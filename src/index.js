@@ -1,14 +1,14 @@
 'use strict';
 
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const io = require('socket.io-client');
+import io from 'socket.io-client';
 // Deal with loading modules for react.
-const store = require('./store');
+import store from './store';
 
-const {Provider} = require('react-redux');
-const Workspace = require('./workspace.jsx');
+import {Provider} from 'react-redux';
+import Workspace from './workspace.jsx';
 
 const socket = io('http://localhost:4195');
 

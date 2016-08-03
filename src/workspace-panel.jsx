@@ -7,19 +7,14 @@
 // on the state of the application whatsoever. The sole job of panels is to
 // organize code within the application and apply layout styles to the
 // components within or to have a (usually flexbox) style that it uses.
-const React = require('react');
+import React from 'react';
 
-class WorkspacePanel extends React.Component {
-  render() {
-    const children = React.Children.map(this.props.children, child => React.cloneElement(child, {
-    }));
-
-    return (
-      <workspace-panel class={`${this.props.classStyle}`}>
-        { children }
-      </workspace-panel>
-    );
-  }
-}
+const WorkspacePanel = ({children, classStyle}) => (
+    <workspace-panel class={`${classStyle}`}>
+      {React.Children.map(children, child =>
+          React.cloneElement(child, {})
+        )}
+    </workspace-panel>
+  );
 
 module.exports = WorkspacePanel;
