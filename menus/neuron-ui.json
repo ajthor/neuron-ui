@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle neuron-ui",
+        "command": "neuron-ui:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "neuron-ui",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "neuron-ui:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
